@@ -44,7 +44,7 @@ const __dirname = path.resolve(); // needed for ES modules
 app.use(express.static(path.join(__dirname, "frontend/dist")));
 
 // Send index.html for any unknown route (frontend routing)
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 
