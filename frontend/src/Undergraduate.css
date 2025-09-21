@@ -1,0 +1,87 @@
+.ug-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: #f8fafc; /* same soft background */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ug-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  color: #1e293b; /* deep navy */
+}
+
+.ug-intro {
+  font-size: 1.1rem;
+  color: #334155;
+  text-align: center;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ug-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.ug-card {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 14px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-top: 6px solid #2563eb; /* royal blue accent */
+}
+
+.ug-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  border-top-color: #f59e0b; /* amber on hover */
+}
+
+.ug-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.ug-duration {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #2563eb;
+  margin-bottom: 0.8rem;
+}
+
+.ug-description {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.ug-highlights {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ug-highlights li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.4rem;
+  color: #334155;
+  font-size: 0.9rem;
+}
+
+.ug-highlights li::before {
+  content: "✔";
+  color: #2563eb;
+  position: absolute;
+  left: 0;
+}
