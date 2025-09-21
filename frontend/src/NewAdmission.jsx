@@ -5,10 +5,11 @@ import FormLogin from "./AdmissionForm.jsx"
 import ApplicationFormCheck from "./AdmissionStatus.jsx"
 import RazorpayPayment from "./Razorpay"
 
+
 import { Link } from "react-router-dom";
 import { FaHome, FaUserGraduate, FaMoneyBillWave, FaWpforms,FaClipboardCheck, FaCreditCard } from "react-icons/fa"; // Font Awesome icons
 // import StudentPortal from "./StudentPortal.jsx"
-import AutoDismissAlert from "./AutoDismissedAlert";
+
 
 
 function NewAdmission() {
@@ -45,7 +46,7 @@ function NewAdmission() {
 
     return (
         <> 
-            { }
+            
             <Navbar />
 
             {/* {alert && <AutoDismissAlert message={alertMessage} onClose={() => setAlert(false)} />} */}

@@ -49,6 +49,7 @@ function StudentPortal() {
       <Navbar />
       <div className="d-flex">
         {/* SIDEBAR */}
+        
         <div className="sidebar-text-style bg-light d-flex">
           <nav
             className="vh-100 flex-column border-end border-3 pt-4"
@@ -114,11 +115,12 @@ function StudentPortal() {
             </ul>
           </nav>
 
-          {/* CONTENT AREA */}
-          <div className="flex-grow-1 p-4">
+          
+        </div>
+        {/* CONTENT AREA */}
+          <div className="container-fluid p-4">
             {renderContent()}
           </div>
-        </div>
       </div>
       <Footer />
     </>
