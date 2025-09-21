@@ -111,7 +111,7 @@ router.post("/formsubmit", async (req, res) => {
     console.error(err.message);
     if (err.code === "23505") {
       // Unique constraint violation (email/application_number)
-      res.status(400).json({ message: "Application number already registered." });
+      res.status(400).json({ message: "Application number or Email already registered." });
     } else {
       res.status(500).json({ message: "Server error. Please try again later." });
     }
