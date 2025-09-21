@@ -61,7 +61,7 @@ export default function ApplicationFormCheck() {
       {/* Table Section */}
       {formData && (
         <div className="card shadow p-4">
-          <h5 className="mb-3 text-success">Form Data</h5>
+          <h5 className="mb-3 text-success">Application Form </h5>
           <table className="table table-bordered table-striped">
             <tbody>
               {Object.entries(formData).map(([key, value]) => (

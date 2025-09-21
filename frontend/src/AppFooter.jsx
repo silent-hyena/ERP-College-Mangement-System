@@ -41,7 +41,7 @@ function Footer() {
                                 </Link>
                             </li>
                             <li className="nav-item p-0 ">
-                                <Link className="nav-link p-0 " to="/">
+                                <Link className="nav-link p-0 " to="/academicCalendar">
                                     Academic Calendar
                                 </Link>
                             </li>
