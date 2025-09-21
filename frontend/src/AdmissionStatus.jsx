@@ -36,7 +36,7 @@ export default function ApplicationFormCheck() {
     <div className="container mt-5">
       {/* Form Section */}
       <div className="card shadow p-4 mb-4" style={{ maxWidth: "500px", margin: "0 auto" }}>
-        <h4 className="text-center mb-3 text-primary">Check Admission Form</h4>
+        <h4 className="text-center mb-3 text-primary">Check Your Application Status</h4>
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Application Number */}
           <div className="mb-3">

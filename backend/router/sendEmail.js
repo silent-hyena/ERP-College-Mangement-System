@@ -23,14 +23,14 @@ router.post("/sendmail",verifyLogin, async (req, res) => {
             to:  recipients || ['ayushpanwar3134@gmail.com'], 
             from: {
                 name: "SMS",
-                email: 'ayushpanwar00007@gmail.com'
+                email: 'serversmart.info@gmail.com'
             },
             
-            subject: emailSub || 'Sending with SendGrid is Fun',
-            text: emailBody || 'and easy to do anywhere, even with Node.js',
+            subject: emailSub || 'No subject',
+            text: emailBody || '',
             html: emailBody
                 ? `<strong>${emailBody}</strong>`
-                : '<strong>and easy to do anywhere, even with Node.js</strong>'
+                : '<strong>This is an auto generated email from Student Management System</strong>'
 
         }
 

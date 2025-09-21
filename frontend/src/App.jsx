@@ -13,6 +13,7 @@ import PostgraduatePrograms from './Postgraduate.jsx';
 import UndergraduatePrograms from './Undergraduate.jsx';
 import FeeStructure from './FeeStructure.jsx';
 import AcademicCalendar from './AcademicCalendar.jsx';
+import StudentPortal from './StudentPortal.jsx';
 
 function usePageTracking() {
   const location = useLocation();
@@ -42,6 +43,7 @@ function App() {
               <Route path="/counselling" element={<Home />} />
               <Route path="/feeStructure" element={<FeeStructure />} />
               <Route path="/studentLogin" element={<StudentLogin />} />
+              <Route path="/studentportal" element={<StudentPortal />} />
               <Route path="/programmes/undergraduate" element={<UndergraduatePrograms />} />
               <Route path="/programmes/postgraduate" element={<PostgraduatePrograms />} />
               <Route path="/institute/history" element={<History />} />

@@ -28,7 +28,7 @@ export default function StudentLogin() {
 
     const Data = await response.json();
     if (Data.status == "success") {
-      navigate("/")
+      navigate("/studentportal")
       // console.log(Data)
     }
     else {
