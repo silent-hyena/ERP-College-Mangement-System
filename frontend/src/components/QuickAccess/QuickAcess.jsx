@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaUsers, FaBookOpen, FaUserCheck, FaBuilding } from 'react-icons/fa';
-import './QuickAccess.css'; // Import custom CSS for additional styling
+import './quickAccess.css'; // Import custom CSS for additional styling
 
 const QuickAccess = () => {
   return (
