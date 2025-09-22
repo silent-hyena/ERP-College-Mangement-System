@@ -7,7 +7,7 @@ import RazorpayPayment from "../RazorpayPayment/Razorpay.jsx"
 
 import Sidebar from "../../components/Sidebar/Sidebar.jsx"
 // import StudentPortal from "./StudentPortal.jsx"
-
+import './newAdmission.css'
 
 
 function NewAdmission() {

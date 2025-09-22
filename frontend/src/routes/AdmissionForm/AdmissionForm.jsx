@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import AutoDismissAlert from "../../AutoDismissedAlert";
-import "./AdmissionForm.css";
+import "./admissionForm.css";
 
 function FormLogin() {
   const {
