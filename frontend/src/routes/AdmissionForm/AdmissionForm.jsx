@@ -175,7 +175,7 @@ function FormLogin() {
               <label className="form-check-label">Female</label>
             </div>
             <div className="form-check">
-              <input type="radio" value="Transgender" className="form-check-input" {...register("gender")} />
+              <input type="radio" value="Others" className="form-check-input" {...register("gender")} />
               <label className="form-check-label">Others</label>
             </div>
             {errors.gender && <div className="text-danger">{errors.gender.message}</div>}
