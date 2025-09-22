@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import AutoDismissAlert from "../../AutoDismissedAlert";
 import "./admissionForm.css";
-
+import TopProgressBar from "../../components/ProgessBar/ProgressBar";
 function FormLogin() {
   const {
     register,
@@ -64,9 +64,11 @@ function FormLogin() {
 
   const [alert, setAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState(null)
+  const [loadingState,setLoadingState] = useState(false);
 
   async function handleFormSubmit(data) {
     // console.log(data);
+    setLoadingState(true);
     const formUrl = "/admission/formsubmit"
     const response = await fetch(formUrl, {
       method: "POST",
@@ -76,7 +78,7 @@ function FormLogin() {
     });
 
     const Data = await response.json();
-
+    setLoadingState(false)
     setAlertMessage(Data.message)
     setAlert(true)
 
@@ -85,6 +87,7 @@ function FormLogin() {
 
   return (
     <>
+    <TopProgressBar loading={loadingState}/>
     {alert && <AutoDismissAlert message={alertMessage} onClose={() => setAlert(false)} />}
     <div className="admission-form-container mt-5">
       <h2 className="mb-4 text-center">Admission Form</h2>

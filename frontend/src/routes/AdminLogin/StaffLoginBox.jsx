@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import AutoDismissAlert from "../../AutoDismissedAlert";
+import TopProgressBar from "../../components/ProgessBar/ProgressBar.jsx";
 
 export default function StaffLogin() {
   const [alert,setAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null)
   const [alertType, setAlertType] = useState("success")
+  const [loadingState,setLoadingState] = useState(false)
 
   const {
     register,
@@ -19,7 +21,7 @@ export default function StaffLogin() {
 
   async function onSubmit(data){
     
-
+    setLoadingState(true)
     const response = await fetch("/staff/portallogin", {
       method: "POST",
       headers: { "Content-Type": "application/json" }, 
@@ -28,6 +30,8 @@ export default function StaffLogin() {
     });
 
     const Data = await response.json();
+    setLoadingState(false)
+
     if(Data.status =="success"){
       navigate("/staffadminpage")
       // console.log(Data)
@@ -41,7 +45,7 @@ export default function StaffLogin() {
   };
 
   return (
-    <>
+    <> <TopProgressBar loading={loadingState}/>
        {alert && <AutoDismissAlert message={alertMessage} type ={alertType} onClose={() => setAlert(false)} />}
       <Navbar />
       <div className="container-fluid vh-100 d-flex align-items-center">

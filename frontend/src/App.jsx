@@ -14,6 +14,8 @@ import UndergraduatePrograms from './routes/Undergraduate/Undergraduate.jsx';
 import FeeStructure from './routes/FeeStructure/FeeStructure.jsx';
 import AcademicCalendar from './routes/AcademicCalendar/AcademicCalendar.jsx';
 import StudentPortal from './routes/StudentPortal/StudentPortal.jsx';
+// import AdminPage from './routes/AdminPage/AdminPage.jsx';
+import DatbaseTables from './routes/AdminPage/DatabaseCards.jsx';
 
 function usePageTracking() {
   const location = useLocation();

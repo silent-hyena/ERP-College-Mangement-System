@@ -95,15 +95,16 @@ router.post("/formsubmit", async (req, res) => {
     const emailSubject = "Your Admission Application has been Successfully Registered";
 
     const emailBody = `
-      <h2>Dear ${name},</h2>
-      <p>Thank you for submitting your admission application to our institution.</p>
-      <p>Your application has been successfully registered. Please keep your application number <strong>${applicationNumber}</strong> safe for future reference.</p>
-      <p>You can track your application status on our official college portal.</p>
-      <p>For any queries, please contact our admissions office.</p>
-      <br>
-      <p>Best regards,<br>Admissions Team<br>Student Management System</p>
-    `;
-
+        <h2>Dear ${name},</h2>
+        <p>Thank you for submitting your admission application to our institution.</p>
+        <p>Your application has been successfully registered. Please keep your application number <strong>${applicationNumber}</strong> safe for future reference.</p>
+        <p>You can track your application status on our official college portal.</p>
+        <p>For any queries, please contact our admissions office.</p>
+        <br>
+        <p><em>This is an auto-generated email. Please do not reply to this email address.</em></p>
+        <br>
+        <p>Best regards,<br>Admissions Team<br>Student Management System</p>
+      `;
     await sendEmail(email, emailSubject, emailBody)
 
     res.status(201).json({ message: "Form submitted successfully!", data: result[0] });

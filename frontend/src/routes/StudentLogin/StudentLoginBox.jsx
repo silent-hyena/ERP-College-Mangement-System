@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import AutoDismissAlert from "../../AutoDismissedAlert";
+import TopProgressBar from "../../components/ProgessBar/ProgressBar.jsx";
 
 export default function StudentLogin() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ export default function StudentLogin() {
   const [alert, setAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null)
   const [alertType, setAlertType] = useState("success")
+  const [loadingState,setLoadingState] = useState(false)
 
   const {
     register,
@@ -19,6 +21,7 @@ export default function StudentLogin() {
 
   async function onSubmit(data) {
 
+    setLoadingState(true)
     const response = await fetch("/student/portallogin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -27,6 +30,8 @@ export default function StudentLogin() {
     });
 
     const Data = await response.json();
+
+    setLoadingState(false)
     if (Data.status == "success") {
       navigate("/studentportal")
       // console.log(Data)
@@ -40,7 +45,7 @@ export default function StudentLogin() {
   }
 
   return (
-    <>
+    <><TopProgressBar loading={loadingState}/>
       {alert && <AutoDismissAlert message={alertMessage} type={alertType} onClose={() => setAlert(false)} />}
       <Navbar />
       <div className="container-fluid vh-100 d-flex align-items-center">

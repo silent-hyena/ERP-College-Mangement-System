@@ -7,7 +7,7 @@ import RazorpayPayment from "../RazorpayPayment/Razorpay.jsx"
 
 import Sidebar from "../../components/Sidebar/Sidebar.jsx"
 // import StudentPortal from "./StudentPortal.jsx"
-
+import AdminPage from "../AdminPage/AdminPage.jsx"
 
 function NewAdmission() {
     const [showAdmissionform, setShowAdmissionForm] = useState(true)
@@ -64,7 +64,7 @@ function NewAdmission() {
                     </div>
                 )}
 
-                {/* Paymengt Box */}
+                {/* Payment Box */}
                 {showpayment && 
                 <div className="container-fluid">
                         <RazorpayPayment />

@@ -6,7 +6,7 @@ import './Navbar.css';
 function Navbar() {
 
     return (
-        <>
+        <>  
             <nav className="navbar navbar-expand-md shadow-sm  m-0">
                 <div className="container-fluid">
 

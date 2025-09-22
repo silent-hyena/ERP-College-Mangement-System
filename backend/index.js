@@ -10,6 +10,8 @@ import EmailRoute from "./router/sendEmail.js";
 import staffRoute from "./router/staff.js";
 import studentRoute from "./router/student.js";
 import admissionRoute from "./router/admission.js";
+import adminRoute from "./router/admin.js"
+
 
 dotenv.config();
 const app = express();
@@ -32,6 +34,7 @@ app.use("/emailservice", EmailRoute);
 app.use("/staff", staffRoute);
 app.use("/student", studentRoute);
 app.use("/admission", admissionRoute);
+app.use("/staff/admin",adminRoute)
 
 // Serve frontend (Vite build)
 const __dirname = path.resolve();

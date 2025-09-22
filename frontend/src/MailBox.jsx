@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import AutoDismissAlert from "./AutoDismissedAlert";
 import { useState } from "react";
+import TopProgressBar from "./components/ProgessBar/ProgressBar";
 
 export default function EmailForm() {
   const [alertflag, setAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
+  const [loadingState, setLoadingState]  = useState(false)
 
   const {
     register,
@@ -14,7 +16,7 @@ export default function EmailForm() {
 
   const onSubmit = async (data) => {
     
-
+    setLoadingState(true);
     const recipients = data.recipients
       .split(",")
       .map((email) => email.trim())
@@ -36,6 +38,8 @@ export default function EmailForm() {
       });
 
       const result = await res.json();
+
+      setLoadingState(false)
       setAlertMessage(result.alert || result.message);
       setAlert(true);
     } catch (err) {
@@ -45,7 +49,7 @@ export default function EmailForm() {
   };
 
   return (
-    <>
+    <><TopProgressBar loading={loadingState}/>
       {alertflag && (
         <AutoDismissAlert
           message={alertMessage}

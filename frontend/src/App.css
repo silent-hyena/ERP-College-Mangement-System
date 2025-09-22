@@ -200,3 +200,72 @@ body.dark .carousel-item img:hover {
 .footer-style .nav-link:hover{
   color:#000 !important
 }
+
+/* Custom css for sidebar throughtout the app */
+
+/* ==== SIDEBAR BASE ==== */
+.sidebar2 {
+  display: flex;
+  justify-content: center;
+  min-width: 100px !important;
+  /* max-width: 200px !important; */
+  min-height: 100vh;
+  background-color: #f9fafb; /* primary blue */
+  color: #fff;
+  position: sticky;
+ 
+  top: 0;
+  box-sizing: border-box; /* ensures width includes border & padding */
+}
+
+/* Sidebar nav links */
+.sidebar2 .nav-link {
+  color: #e3f2fd; /* light text */
+  font-weight: 500;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.sidebar2 .nav-link:hover {
+  background-color: #1565C0; /* dark hover */
+  color: #ffffff;
+}
+
+/* Active link (if using react-router activeClassName) */
+.sidebar2 .nav-link.active {
+  background-color: #90CAF9; /* accent */
+  color: #0d47a1;
+  font-weight: 600;
+}
+
+/* Sidebar buttons */
+.sidebar2-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%; /* full width inside padding */
+  background-color: #90CAF9 !important;
+  color: #0d47a1;
+  border: none;
+  font-weight: 600;
+  padding: 10px;
+  margin: auto;
+  text-align: left;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  box-sizing: border-box; /* includes padding in width */
+  text-decoration: none; /* removes underline */
+}
+
+
+.sidebar2-btn:hover {
+  background-color: #1565C0 !important;
+  color: #fff;
+}
+
+/* Icons */
+.sidebar2 .nav-link svg,
+.sidebar2-btn svg {
+  font-size: 18px;
+}
