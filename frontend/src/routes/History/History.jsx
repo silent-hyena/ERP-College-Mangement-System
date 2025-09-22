@@ -1,6 +1,6 @@
 import './History.css'
-import Navbar from '../../Components/Navbar/Navbar';
-import Footer from '../../Components/Footer/AppFooter';
+import Navbar from '../../components/Navbar/Navbar';
+import Footer from '../../components/Footer/AppFooter';
 const History = () => {
   const milestones = [
     { year: "1995", event: "College founded with Arts & Science departments" },

@@ -1,7 +1,7 @@
 import React from "react";
 import "./FeeStructure.css";
-import Navbar from "../../Components/Navbar/Navbar.jsx";
-import Footer from "../../Components/Footer/AppFooter.jsx";
+import Navbar from "../../components/Navbar/Navbar.jsx";
+import Footer from "../../components/Footer/AppFooter.jsx";
 const FeeStructure = () => {
   const ugFees = [
     { category: "Tuition Fees (per year)", amount: "₹ 60,000" },

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Undergraduate.css";
 import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../Components/Footer/AppFooter";
+import Footer from "../../components/Footer/AppFooter";
 
 const UndergraduatePrograms = () => {
   const programs = [

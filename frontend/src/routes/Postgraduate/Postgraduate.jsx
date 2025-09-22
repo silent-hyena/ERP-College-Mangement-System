@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../Components/Footer/AppFooter";
+import Footer from "../../components/Footer/AppFooter";
 import "./Postgraduate.css";
 
 const PostgraduatePrograms = () => {

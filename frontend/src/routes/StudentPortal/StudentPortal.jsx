@@ -12,8 +12,8 @@ import {
   
 } from "react-icons/fa";
 
-import Navbar from "../../Components/Navbar/Navbar.jsx";
-import Footer from "../../Components/Footer/AppFooter.jsx";
+import Navbar from "../../components/Navbar/Navbar.jsx";
+import Footer from "../../components/Footer/AppFooter.jsx";
 import RazorpayPayment from "../RazorpayPayment/Razorpay.jsx";
 
 

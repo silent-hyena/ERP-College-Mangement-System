@@ -1,5 +1,5 @@
-import Navbar from "../../Components/Navbar/Navbar.jsx";
-import Footer from "../../Components/Footer/AppFooter.jsx";
+import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/AppFooter";
 import { Link } from "react-router-dom";
 import EmailForm from "../../MailBox";
 import { 

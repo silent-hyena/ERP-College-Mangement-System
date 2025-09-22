@@ -1,6 +1,6 @@
 import React from "react";
 import "./AcademicCalendar.css";
-import Navbar from '../../Components/Navbar/Navbar.jsx';
+import Navbar from '../../components/Navbar/Navbar.jsx';
 
 const AcademicCalendar = () => {
   return (

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Navbar from "../../Components/Navbar/Navbar.jsx";
+import Navbar from "../../components/Navbar/Navbar.jsx";
 import AutoDismissAlert from "../../AutoDismissedAlert";
 
 export default function StaffLogin() {

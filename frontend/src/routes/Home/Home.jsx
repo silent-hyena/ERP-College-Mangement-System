@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { useTheme } from "../../useTheme";
-import Navbar from "../../Components/Navbar/Navbar.jsx";
-import Footer from "../../Components/Footer/AppFooter.jsx";
-import Banner from "../../Components/Carousel/Carousel.jsx";
-import QuickAccess from "../../Components/QuickAccess/QuickAcess.jsx";
+import Navbar from "../../components/Navbar/Navbar.jsx";
+import Footer from "../../components/Footer/AppFooter.jsx";
+import Banner from "../../components/Carousel/Carousel.jsx";
+import QuickAccess from "../../components/QuickAccess/QuickAcess.jsx";
 
 import './Home.css'
-import Performance from "../../Components/Performance/Performance.jsx";
+import Performance from "../../components/Performance/Performance.jsx";
 
 function Home() {
 

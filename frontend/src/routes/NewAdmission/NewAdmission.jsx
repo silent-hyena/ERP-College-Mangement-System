@@ -1,11 +1,11 @@
 // import { Link } from "react-router-dom"
 import { useState } from "react"
-import Navbar from "./Components/Navbar/Navbar.jsx"
-import FormLogin from "./routes/AdmissionForm/AdmissionForm.jsx"
-import ApplicationFormCheck from "./routes/ApplicationStatus/AdmissionStatus.jsx"
-import RazorpayPayment from "./routes/RazorpayPayment/Razorpay.jsx"
+import Navbar from "../../components/Navbar/Navbar.jsx"
+import FormLogin from "../AdmissionForm/AdmissionForm.jsx"
+import ApplicationFormCheck from "../ApplicationStatus/AdmissionStatus.jsx"
+import RazorpayPayment from "../RazorpayPayment/Razorpay.jsx"
 
-import Sidebar from "./Components/Sidebar/Sidebar.jsx"
+import Sidebar from "../../components/Sidebar/Sidebar.jsx"
 // import StudentPortal from "./StudentPortal.jsx"
 
 
