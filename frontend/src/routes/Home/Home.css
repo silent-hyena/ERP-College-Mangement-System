@@ -1,0 +1,50 @@
+/* Top bar */
+.top-bar {
+  background-color: #F9FAFB; /* neutral */
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.college-logo img {
+  max-width: 70px;
+  border: 3px solid #FBBF24; /* gold border */
+}
+
+.college-title h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #4300FF; /* primary blue */
+  margin-top: 10px;
+}
+
+/* Theme toggle */
+.theme-toggle button {
+  background: transparent;
+  border: none;
+}
+
+.theme-toggle img {
+  width: 35px;
+  transition: transform 0.2s ease-in-out;
+}
+.theme-toggle img:hover {
+  transform: scale(1.1);
+}
+
+/* Footer */
+.footer {
+  background: #F3F4F6;
+  padding: 30px 20px;
+  color: #1F2937;
+}
+
+.footer h5 {
+  color: #2563EB;
+}
+
+.footer a {
+  color: #6B7280;
+}
+.footer a:hover {
+  color: #FBBF24;
+}

@@ -1,0 +1,74 @@
+/* ==== PERFORMANCE SECTION ==== */
+.performance-section {
+  background: #f9fafb;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin: 2rem auto;
+  max-width: 1100px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.performance-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0d47a1;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* ==== GRID ==== */
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* ==== CHART CARD ==== */
+.chart-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.chart-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.chart-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1565c0;
+  margin-bottom: 1rem;
+}
+
+/* ==== PROGRESS BAR ==== */
+.progress-container {
+  background: #e3f2fd;
+  border-radius: 10px;
+  height: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  background: #1565c0;
+  color: #fff;
+  font-weight: 600;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+}
+
+.progress-desc {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}

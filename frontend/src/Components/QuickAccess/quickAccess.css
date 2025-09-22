@@ -1,0 +1,43 @@
+/* ==== Quick Access Section ==== */
+.quick-access-card {
+  border: none;
+  border-top: 4px solid #00FFDE; /* accent line */
+  background-color: #fff !important;
+  border-radius: 12px;
+  box-shadow: 0px 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.quick-access-card .card-title {
+  color: #1565C0;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.quick-access-card .card-text {
+  color: #1565C0 !important;
+  font-size: 0.9rem;
+}
+
+.quick-access-card .card-body svg {
+  color: #1565C0; /* icon primary */
+  transition: color 0.3s ease;
+}
+
+/* Hover Effects */
+.quick-access-card:hover {
+  background-color: #1565C0 !important; /* cyan accent */
+  transform: translateY(-5px);
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+}
+
+.quick-access-card:hover .card-body svg {
+  color: #fff; /* purple on hover */
+}
+
+.quick-access-card:hover .card-title {
+  color: #fff; /* blue title on hover */
+}
+.quick-access-card:hover .card-text {
+  color: #fff !important; /* blue title on hover */
+}

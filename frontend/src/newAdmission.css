@@ -1,0 +1,64 @@
+/* General body and container styling */
+body {
+background-color: #f0f4f9; /* Light, clean background */
+font-family: 'Inter', sans-serif;
+}
+
+.d-flex {
+display: flex;
+min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+width: 280px;
+min-height: 100vh;
+background-color: #5F9EA0; /* Cadet Blue for a softer look */
+position: relative; /* Essential for positioning the vertical line */
+padding-top: 2rem;
+}
+
+/* Vertical line to the right of the sidebar */
+.vertical-line {
+position: absolute;
+right: -5px; /* Adjust this value to control the gap */
+top: 0;
+width: 5px; /* Thicker line for emphasis */
+height: 100%;
+background-color: #4682B4; /* Steel Blue for a strong contrast */
+}
+
+/* Sidebar navigation links */
+.sidebar .nav-link {
+color: #ffffff;
+font-weight: 500;
+padding: 15px 25px;
+border-radius: 50px; /* Large border-radius for pill shape */
+transition: all 0.2s ease;
+margin: 10px 20px; /* Add margin for separation */
+text-decoration: none; /* Remove underline */
+display: flex;
+align-items: center;
+}
+
+.sidebar .nav-link:hover {
+background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Active link style */
+.sidebar .nav-link.active {
+background-color: #87CEEB; /* Lighter blue for the active state */
+color: #0d47a1;
+font-weight: 600;
+}
+
+/* Icon styling */
+.sidebar .nav-link svg {
+margin-right: 10px;
+}
+
+/* Main content area */
+.container-fluid {
+flex-grow: 1;
+padding: 2rem;
+}

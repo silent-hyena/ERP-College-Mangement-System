@@ -4,16 +4,16 @@ import { Routes, Route,useLocation  } from 'react-router-dom'
 
 import { useEffect } from "react";
 import NewAdmission from './NewAdmission.jsx'
-import Home from './Home.jsx'
-import AdminPage from './AdminPage.jsx';
-import StudentLogin from './StudentLoginBox.jsx';
-import StaffLogin from './StaffLoginBox.jsx';
-import History from './History.jsx';
-import PostgraduatePrograms from './Postgraduate.jsx';
-import UndergraduatePrograms from './Undergraduate.jsx';
-import FeeStructure from './FeeStructure.jsx';
-import AcademicCalendar from './AcademicCalendar.jsx';
-import StudentPortal from './StudentPortal.jsx';
+import Home from './routes/Home/Home.jsx'
+import AdminPage from './routes/AdminPage/AdminPage.jsx';
+import StudentLogin from './routes/StudentLogin/StudentLoginBox.jsx';
+import StaffLogin from './routes/AdminLogin/StaffLoginBox.jsx';
+import History from './routes/History/History.jsx';
+import PostgraduatePrograms from './routes/Postgraduate/Postgraduate.jsx';
+import UndergraduatePrograms from './routes/Undergraduate/Undergraduate.jsx';
+import FeeStructure from './routes/FeeStructure/FeeStructure.jsx';
+import AcademicCalendar from './routes/AcademicCalendar/AcademicCalendar.jsx';
+import StudentPortal from './routes/StudentPortal/StudentPortal.jsx';
 
 function usePageTracking() {
   const location = useLocation();

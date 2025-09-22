@@ -1,0 +1,92 @@
+/* ==== ADMISSION FORM BASE ==== */
+.admission-form-container {
+  max-width: 900px;
+  margin: auto;
+  background-color: #f9fafb; /* matches sidebar */
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+.admission-form-container h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0d47a1; /* deep blue */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* ==== FORM FIELDS ==== */
+.admission-form-container .form-label {
+  font-weight: 600;
+  color: #0d47a1; /* matches sidebar active text */
+}
+
+.admission-form-container .form-control,
+.admission-form-container .form-select {
+  border: 1px solid #90caf9; /* accent blue border */
+  border-radius: 8px;
+  padding: 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admission-form-container .form-control:focus,
+.admission-form-container .form-select:focus {
+  border-color: #1565c0; /* darker blue on focus */
+  box-shadow: 0 0 6px rgba(21, 101, 192, 0.3);
+}
+
+/* Invalid feedback */
+.admission-form-container .is-invalid {
+  border-color: #e53935 !important; /* red for error */
+}
+
+.admission-form-container .invalid-feedback,
+.admission-form-container .text-danger {
+  font-size: 0.85rem;
+  color: #e53935;
+}
+
+/* ==== RADIO BUTTONS ==== */
+.admission-form-container .form-check-input:checked {
+  background-color: #1565c0;
+  border-color: #1565c0;
+}
+
+.admission-form-container .form-check-label {
+  font-weight: 500;
+  color: #333;
+}
+
+/* ==== SUBMIT BUTTON ==== */
+.admission-form-container .btn-primary {
+  background-color: #90caf9;
+  border: none;
+  font-weight: 600;
+  color: #0d47a1;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+
+.admission-form-container .btn-primary:hover {
+  background-color: #1565c0;
+  color: #fff;
+}
+
+/* ==== RESPONSIVENESS ==== */
+@media (max-width: 768px) {
+  .admission-form-container {
+    padding: 1.5rem;
+  }
+
+  .admission-form-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .admission-form-container .btn-primary {
+    width: 100%;
+  }
+}
