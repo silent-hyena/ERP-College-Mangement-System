@@ -1,5 +1,5 @@
 import './History.css'
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../Components/Navbar/Navbar';
 import Footer from '../../Components/Footer/AppFooter';
 const History = () => {
   const milestones = [
