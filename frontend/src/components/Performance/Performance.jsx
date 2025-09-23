@@ -1,5 +1,5 @@
 import React from "react";
-import "./performance.css";
+import "./Performance.css";
 
 const stats = [
   { title: "Faculty", value: "1000+" },
