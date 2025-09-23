@@ -1,17 +1,17 @@
 import React from "react";
-import "./Performance.css";
+import "./performance.css";
 
 const stats = [
-  { title: "Faculty*", value: "1000+" },
+  { title: "Faculty", value: "1000+" },
   { title: "Students", value: "13,000+" },
   { title: "Publications", value: "3,500+" },
-  { title: "Patents*", value: "450+" },
-  { title: "Projects*", value: "2,800+" },
+  { title: "Patents", value: "450+" },
+  { title: "Projects", value: "2,800+" },
 ];
 
 export default function Performance() {
   return (<div className="performance-container">
-        <h4 className="performance-title">Some Statistics</h4>
+        <h3 className="performance-title text-center mb-5 fw-bold">Some Statistics</h3>
         <div className="stats-container">
           
           {stats.map((item, index) => (

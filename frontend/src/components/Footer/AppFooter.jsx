@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Footer() {
     return (<>
 
-        <footer className="footer-style pt-5 pb-2 mt-0" style={{ background: 'linear-gradient(180deg, #001435 43.89%, #0d47a1 102%)' }}>
+        <footer className="footer-style pt-5 pb-5 mt-0" style={{ background: 'linear-gradient(180deg, #001435 43.89%, #0d47a1 102%)' }}>
             <div className="container">
                 <div className="row">
 
@@ -66,7 +66,7 @@ function Footer() {
                 </div>
 
                 {/* Copywrite bar */}
-                <hr className="border-light" />
+                <hr className="border-light mt-5" />
                 <div className="text-center">
                     <small>© 2025 Student Management System. All rights reserved.</small>
                 </div>
