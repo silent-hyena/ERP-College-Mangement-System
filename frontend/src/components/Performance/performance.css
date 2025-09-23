@@ -1,74 +1,57 @@
-/* ==== PERFORMANCE SECTION ==== */
-.performance-section {
-  background: #f9fafb;
-  padding: 3rem 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  margin: 2rem auto;
-  max-width: 1100px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+.performance-title{
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1e293b; /* deep navy */
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 2rem;
 }
 
 .performance-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #0d47a1;
+  font-size: 2.5rem;
+  font-weight: bold;
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
+  color: #1e293b; /* deep navy */
 }
 
-/* ==== GRID ==== */
-.performance-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-/* ==== CHART CARD ==== */
-.chart-card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.stats-card {
+  background-color: #ffffff; /* light blue */
+  border-radius: 10px;
+  padding: 2rem;
+  width: 180px;
   text-align: center;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-top: 6px solid #2563eb; /* royal blue accent */
 }
 
-.chart-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  border-top-color: #00CAFF; /* amber hover */
 }
 
-.chart-title {
-  font-size: 1.2rem;
+.stats-title {
+  font-size: 1rem;
   font-weight: 600;
-  color: #1565c0;
-  margin-bottom: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
 }
 
-/* ==== PROGRESS BAR ==== */
-.progress-container {
-  background: #e3f2fd;
-  border-radius: 10px;
-  height: 30px;
-  overflow: hidden;
-  position: relative;
+.stats-title:hover {
+  color: #fff !important;
 }
 
-.progress-bar {
-  background: #1565c0;
-  color: #fff;
-  font-weight: 600;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  transition: width 1s ease-in-out;
-}
-
-.progress-desc {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #555;
+.stats-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #222;
 }
