@@ -5,7 +5,6 @@ import Navbar from "../../components/Navbar/Navbar.jsx";
 import Footer from "../../components/Footer/AppFooter.jsx";
 import Banner from "../../components/Carousel/Carousel.jsx";
 import QuickAccess from "../../components/QuickAccess/QuickAcess.jsx";
-
 import './Home.css'
 import Performance from "../../components/Performance/Performance.jsx";
 
@@ -61,6 +60,8 @@ function Home() {
       {/* other homepage content */}
       <Performance />
       <Footer />
+     
+      
 
     </>
   )

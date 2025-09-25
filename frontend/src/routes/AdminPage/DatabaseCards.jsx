@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import AutoDismissAlert from "../../AutoDismissedAlert";
+import TopProgressBar from "../../components/ProgessBar/ProgressBar";
 
 function DatbaseTables() {
     const [tables, setTables] = useState([]); // store fetched data
     const [alert, setAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState(null);
+    const [loadingState, setLoadingState] = useState(false);
 
     // Function to fetch data (call on component mount)
     const fetchTables = async () => {
         try {
+            setLoadingState(true);
             const response = await fetch("staff/admin/showtables", {
                 method: "GET",
                 credentials: "include",
@@ -17,7 +20,7 @@ function DatbaseTables() {
             });
 
             const data = await response.json();
-
+            setLoadingState(false)
             if (data.alert || data.message) {
                 setAlert(true);
                 setAlertMessage(data.alert || data.message);
@@ -39,7 +42,7 @@ function DatbaseTables() {
     // Synchronous render function for cards
     const renderCards = () => {
         return (
-            <>
+            <> <TopProgressBar loading={loadingState}/>
                 {tables.map((table, index) => (
                     <div key={index} className="col-md-4 mb-3">
                         <div

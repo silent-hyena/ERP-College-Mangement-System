@@ -89,7 +89,7 @@ function FormLogin() {
     <>
     <TopProgressBar loading={loadingState}/>
     {alert && <AutoDismissAlert message={alertMessage} onClose={() => setAlert(false)} />}
-    <div className="admission-form-container mt-5">
+    <div className="admission-form-container mt-0">
       <h2 className="mb-4 text-center">Admission Form</h2>
 
       <form onSubmit={handleSubmit(handleFormSubmit)} className="p-4 border bg-light rounded shadow w-100">
@@ -257,7 +257,7 @@ function FormLogin() {
         </div>
 
         {/* Branch Preferences (five separate) */}
-        <p>Select five branch according to your prefernce.</p>
+        <p>Select five branch according to your preference.</p>
         {[1, 2, 3, 4, 5].map((num) => (
           <div className="row mb-3" key={num}>
             <label className="col-sm-3 col-form-label">Preference {num}:</label>

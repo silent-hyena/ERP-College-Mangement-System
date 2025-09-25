@@ -32,7 +32,7 @@ function AdminPage() {
     return (
         <>
             <Navbar />
-            <div className="container-fluid">
+            <div className="d-flex">
                 {/* Flex container to keep sidebar and content side by side */}
                 <div className="sidebar2">
                     {/* SIDEBAR */}
@@ -76,14 +76,18 @@ function AdminPage() {
                         </nav>
                     </div>
 
-                    {/* EMAIL FORM */}
-                    <div className="flex-grow-1 p-4">
-                        {renderComponent()}
-                    </div>
+                    
                 </div>
 
-                <Footer />
+                {/* EMAIL FORM */}
+                    <div className="flex-grow-1 p-5">
+                        {renderComponent()}
+                    </div>
+                {/* <div className="" style={{height:"1000px"}}></div> */}
+
+                
             </div>
+            <Footer />
         </>
     );
 }

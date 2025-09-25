@@ -207,14 +207,16 @@ body.dark .carousel-item img:hover {
 .sidebar2 {
   display: flex;
   justify-content: center;
+  width:220px;
   min-width: 100px !important;
   /* max-width: 200px !important; */
   min-height: 100vh;
   background-color: #f9fafb; /* primary blue */
   color: #fff;
   position: sticky;
+  /* left:0; */
  
-  top: 0;
+  /* top: 0; */
   box-sizing: border-box; /* ensures width includes border & padding */
 }
 

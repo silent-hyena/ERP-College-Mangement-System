@@ -29,11 +29,12 @@ export default function TopProgressBar({ loading }) {
       {loading && (
         <div className="progress" style={{ height: "4px", backgroundColor:"gray" }}>
           <div
-            className="progress-bar bg-black"
+            className="progress-bar"
             role="progressbar"
             style={{
               width: `${progress}%`,
               transition: "width 25ms linear",
+              backgroundColor:"#00CAFF",
             }}
           ></div>
         </div>

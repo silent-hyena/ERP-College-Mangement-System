@@ -58,13 +58,13 @@ export default function EmailForm() {
       )}
 
       {/* Make form occupy full width */}
-      <div className="p-4" style={{ width: "100%", boxSizing: "border-box" }}>
+      <div className="p-4" style={{ width: "100%", boxSizing: "border-box"  }}>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white p-3 shadow-lg rounded-4 border border-light w-100"
-          style={{ maxWidth: "800px", margin: "0 auto" }}
+          className="p-3 shadow-sm rounded-4 border border-light w-100"
+          style={{ maxWidth: "800px", margin: "0 auto" , backgroundColor: "rgba(250, 250, 250, 1)"}}
         >
-          <h3 className="text-center mb-3 pt-0 mt-0 fw-bold text-primary">Compose Email</h3>
+          <h3 className="text-center mb-3 pt-0 mt-0 fw-bold" style={{color: "#1565C0"}}>Compose Email</h3>
 
 
 

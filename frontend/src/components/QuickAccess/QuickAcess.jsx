@@ -8,7 +8,7 @@ const QuickAccess = () => {
   return (
     <section className="py-5 bg-light">
       <div className="container">
-        <h3 className="text-center mb-5 fw-bold">Quick Access</h3>
+        <h3 className="text-center mb-5 fw-bold" style={{color:"#0d47a1"}}>Quick Access</h3>
         <div className="row g-4">
           <div className="col-12 col-md-6 col-lg-3">
             <Link to="/studentLogin" className="text-decoration-none text-dark">
