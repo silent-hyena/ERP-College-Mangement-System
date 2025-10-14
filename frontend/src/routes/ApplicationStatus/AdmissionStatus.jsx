@@ -41,7 +41,7 @@ export default function ApplicationFormCheck() {
   return (
     <>
       <TopProgressBar loading={loadingState} />
-      <div className="d-flex justify-content-center align-items-center vh-100">
+      <div className="d-flex justify-content-center align-items-start py-5">
         {alert && <AutoDismissAlert message={alertMessage} onClose={() => setAlert(false)} />}
         <div className="container status-container">
           {/* Form Section */}

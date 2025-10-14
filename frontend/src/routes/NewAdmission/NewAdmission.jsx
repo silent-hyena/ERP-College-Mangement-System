@@ -50,7 +50,7 @@ function NewAdmission() {
             {/* {alert && <AutoDismissAlert message={alertMessage} onClose={() => setAlert(false)} />} */}
            
 
-             <div className="d-flex" style={{"backgroundColor": "rgb(240, 241, 242)"}}>
+            <div className="d-flex" style={{"backgroundColor": "rgb(240, 241, 242)"}}>
                     <div className="sidebar-wrapper">
                         <Sidebar
                             handleFormBtn={handleFormBtn}
@@ -64,7 +64,7 @@ function NewAdmission() {
                         {showpayment && <RazorpayPayment />}
                         {showApplcationStatus && <ApplicationFormCheck />}
                     </div>
-                </div>
+             </div>
             <Footer />
 
         </>
