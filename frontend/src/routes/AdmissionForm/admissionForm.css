@@ -10,6 +10,12 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* .col-form-label {
+  color: gray !important;
+  font-size: medium !important;
+  font-weight: 600;
+} */
+
 /* Heading */
 .admission-form-container h2 {
   font-size: 1.8rem;
@@ -22,7 +28,8 @@
 /* ==== FORM FIELDS ==== */
 .admission-form-container .form-label {
   font-weight: 600;
-  color: #0d47a1; /* matches sidebar active text */
+  color: #0d47a1 !important; /* matches sidebar active text */
+  font-size: medium !important;
 }
 
 .admission-form-container .form-control,
@@ -75,7 +82,17 @@
 .admission-form-container .btn-primary:hover {
   background-color: #1565c0;
   color: #fff;
+  
 }
+
+/* Add red asterisk to all required labels */
+/* Add red asterisk only to top-level field labels (not radio or checkbox) */
+.admission-form-container .mb-3 > .form-label::after {
+  content: " *";
+  color: red;
+  font-weight:bold;
+}
+
 
 /* ==== RESPONSIVENESS ==== */
 @media (max-width: 768px) {

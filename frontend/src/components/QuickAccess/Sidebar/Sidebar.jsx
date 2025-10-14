@@ -5,7 +5,7 @@ const Sidebar = ({ handleFormCheck, handleFormBtn, handlePaymentBtn }) => {
   return (
     <div className='sidebar'>
         {/* SIDEBAR */}
-                <div className="sidebar-text-style bg-light d-flex">
+                <div className="sidebar-text-style bg-light d-flex m-1">
 
                     <nav className="vh-100 flex-column pt-4">
 
@@ -16,11 +16,11 @@ const Sidebar = ({ handleFormCheck, handleFormBtn, handlePaymentBtn }) => {
                             
                                 <Link className="mt-3 sidebar-btn d-flex align-items-center gap-2" to="/feeStructure"> < FaMoneyBillWave/>Fee Structure</Link>
                         </ul>
-                        <button className="mt-3  sidebar-btn d-flex align-items-center gap-2" onClick={handleFormCheck} ><FaClipboardCheck/>Check Status</button>
+                        <button className="mt-3  sidebar-btn d-flex align-items-center gap-2" onClick={handleFormCheck} ><FaClipboardCheck/>Check Application Status</button>
 
                         <button className="mt-3 sidebar-btn d-flex align-items-center gap-2" onClick={handleFormBtn} ><FaWpforms/>Fill Admission Form</button>
 
-                        <button className="mt-3  sidebar-btn d-flex align-items-center gap-2" onClick={handlePaymentBtn} ><FaCreditCard/>Make Payment</button>
+                        <button className="mt-3  sidebar-btn d-flex align-items-center gap-2" onClick={handlePaymentBtn} ><FaCreditCard/>Pay Admission Fees</button>
 
                     </nav>
                 </div>

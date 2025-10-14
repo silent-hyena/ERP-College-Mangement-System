@@ -62,3 +62,13 @@ margin-right: 10px;
 flex-grow: 1;
 padding: 2rem;
 }
+
+
+.sidebar-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh; /* full height of screen */
+  overflow-y: auto; /* scroll inside sidebar if content exceeds */
+  background-color: #f8f9fa; /* optional for visual separation */
+  border-right: 1px solid #dee2e6;
+}

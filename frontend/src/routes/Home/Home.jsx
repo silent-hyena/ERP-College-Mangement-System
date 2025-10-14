@@ -28,7 +28,7 @@ function Home() {
 
 
   return (
-    <>
+    <div  style = {{"backgroundColor":  "#faf9f5"}}>
 
       <div className="container-fluid top-bar">
         <div className="row">
@@ -44,13 +44,13 @@ function Home() {
 
           {/* Toggle Theme */}
 
-          <div className="col-1 theme-toggle" >
+          {/* <div className="col-1 theme-toggle" >
             <button className="btn" onClick={handleThemeClick} >
 
 
               <img src={`${themeIcon}`} className="object-fit-scale" alt="theme icon" style={{ maxWidth: "40px" }} />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       <Navbar />
@@ -58,12 +58,12 @@ function Home() {
       {/* <div className="container-fluid " style={{ minHeight: "2000px" }}></div> */}
       <QuickAccess />
       {/* other homepage content */}
-      <Performance />
+      <  Performance />
       <Footer />
      
       
 
-    </>
+    </div>
   )
 }
 export default Home;

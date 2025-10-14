@@ -10,7 +10,7 @@ const stats = [
 ];
 
 export default function Performance() {
-  return (<div className="performance-container">
+  return (<div className="performance-container" >
         <h3 className="performance-title text-center mb-5 fw-bold" style={{color:"#0d47a1"}}>Some Statistics</h3>
         <div className="stats-container">
           

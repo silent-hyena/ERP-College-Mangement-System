@@ -1,0 +1,23 @@
+.carousel-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Adjust darkness (0.3–0.7) */
+  z-index: 1;
+}
+
+.carousel-caption {
+  position: absolute;
+  z-index: 2; /* Make sure text appears above overlay */
+}
+
+.carousel-caption p {
+    font-weight:475 ;
+    font-size: 35px;
+    color: rgb(233, 231, 231);
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}

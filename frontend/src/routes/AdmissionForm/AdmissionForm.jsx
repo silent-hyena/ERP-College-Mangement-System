@@ -3,6 +3,7 @@ import { useState } from "react";
 import AutoDismissAlert from "../../AutoDismissedAlert";
 import "./admissionForm.css";
 import TopProgressBar from "../../components/ProgessBar/ProgressBar";
+
 function FormLogin() {
   const {
     register,
@@ -10,12 +11,6 @@ function FormLogin() {
     formState: { errors },
   } = useForm();
 
-  // const onSubmit = (data) => {
-  //   formData(data)
-
-  // };
-
-  // list of common branches
   const branches = [
     "Computer Science And Engineering",
     "Data Science",
@@ -25,10 +20,8 @@ function FormLogin() {
     "Civil Engineering",
     "Chemical Engineering",
     "Mathematics & Computing",
-
   ];
 
-  // list of Indian states (simplified, you can extend)
   const indianStates = [
     "Andhra Pradesh",
     "Arunachal Pradesh",
@@ -62,135 +55,169 @@ function FormLogin() {
     "West Bengal",
   ];
 
-  const [alert, setAlert] = useState(false)
-  const [alertMessage, setAlertMessage] = useState(null)
-  const [loadingState,setLoadingState] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(null);
+  const [loadingState, setLoadingState] = useState(false);
 
   async function handleFormSubmit(data) {
-    // console.log(data);
     setLoadingState(true);
-    const formUrl = "/admission/formsubmit"
-    const response = await fetch(formUrl, {
+    const response = await fetch("/admission/formsubmit", {
       method: "POST",
       credentials: "include",
-      headers: { "Content-Type": "application/json" }, // send JSON
-      body: JSON.stringify(data), // form fields -> JSON string
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     });
 
     const Data = await response.json();
-    setLoadingState(false)
-    setAlertMessage(Data.message)
-    setAlert(true)
-
-
+    setLoadingState(false);
+    setAlertMessage(Data.message);
+    setAlert(true);
   }
 
   return (
     <>
-    <TopProgressBar loading={loadingState}/>
-    {alert && <AutoDismissAlert message={alertMessage} onClose={() => setAlert(false)} />}
-    <div className="admission-form-container mt-0">
-      <h2 className="mb-4 text-center">Admission Form</h2>
+      <TopProgressBar loading={loadingState} />
+      {alert && (
+        <AutoDismissAlert
+          message={alertMessage}
+          onClose={() => setAlert(false)}
+        />
+      )}
 
-      <form onSubmit={handleSubmit(handleFormSubmit)} className="p-4 border bg-light rounded shadow w-100">
+      <div className="admission-form-container mt-0">
+        <h2 className="mb-4 text-center">Admission Form</h2>
+        
 
-        {/* Application Number */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Application Number:</label>
-          <div className="col-sm-9">
+        <form
+          onSubmit={handleSubmit(handleFormSubmit)}
+          className="p-4 border bg-light rounded shadow w-100"
+        >
+          {/* Application Number */}
+          <p style={{"margin-left": "0px", "color": "gray", "fontWeight": "600"}}> <span style={{ color: "red" }}>* </span>Indicates required fields.</p>
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Application Number:</label>
             <input
               type="number"
-              className={`form-control ${errors.applicationNumber ? "is-invalid" : ""}`}
-              placeholder="Enter JEE Mains Application Number"
-              {...register("applicationNumber", { required: "Application Number is required" })}
+              className={`form-control ${
+                errors.applicationNumber ? "is-invalid" : ""
+              } w-75` }
+              // placeholder="Enter JEE Mains Application Number"
+              {...register("applicationNumber", {
+                required: "Application Number is required",
+              })}
             />
             {errors.applicationNumber && (
-              <div className="invalid-feedback">{errors.applicationNumber.message}</div>
+              <div className="invalid-feedback">
+                {errors.applicationNumber.message}
+              </div>
             )}
           </div>
-        </div>
 
-        {/* Candidate Name */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Candidate Name:</label>
-          <div className="col-sm-9">
+          {/* Candidate Name */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Candidate Name:</label>
             <input
               type="text"
-              className={`form-control ${errors.name ? "is-invalid" : ""}`}
-              placeholder="Enter your name"
+              className={`form-control ${errors.name ? "is-invalid" : ""} w-75`}
+              // placeholder="Enter your name"
               {...register("name", { required: "Name is required" })}
             />
-            {errors.name && <div className="invalid-feedback">{errors.name.message}</div>}
+            {errors.name && (
+              <div className="invalid-feedback">{errors.name.message}</div>
+            )}
           </div>
-        </div>
 
-        {/* Father Name */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Father's Name:</label>
-          <div className="col-sm-9">
+          {/* Father Name */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Father's Name:</label>
             <input
               type="text"
-              className={`form-control ${errors.fatherName ? "is-invalid" : ""}`}
-              placeholder="Enter Father's Name"
+              className={`form-control ${
+                errors.fatherName ? "is-invalid" : ""
+              } w-75`}
+              // placeholder="Enter Father's Name"
               {...register("fatherName", { required: "Father Name is required" })}
             />
-            {errors.fatherName && <div className="invalid-feedback">{errors.fatherName.message}</div>}
+            {errors.fatherName && (
+              <div className="invalid-feedback">
+                {errors.fatherName.message}
+              </div>
+            )}
           </div>
-        </div>
 
-        {/* Mother Name */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Mother's Name:</label>
-          <div className="col-sm-9">
+          {/* Mother Name */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Mother's Name:</label>
             <input
               type="text"
-              className={`form-control ${errors.motherName ? "is-invalid" : ""}`}
-              placeholder="Enter Mother's Name"
+              className={`form-control ${
+                errors.motherName ? "is-invalid" : ""
+              } w-75`}
+              // placeholder="Enter Mother's Name"
               {...register("motherName", { required: "Mother Name is required" })}
             />
-            {errors.motherName && <div className="invalid-feedback">{errors.motherName.message}</div>}
+            {errors.motherName && (
+              <div className="invalid-feedback">
+                {errors.motherName.message}
+              </div>
+            )}
           </div>
-        </div>
 
-        {/* Date of Birth */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Date of Birth:</label>
-          <div className="col-sm-9">
+          {/* Date of Birth */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Date of Birth:</label>
             <input
               type="date"
-              className={`form-control ${errors.dob ? "is-invalid" : ""}`}
+              className={`form-control ${errors.dob ? "is-invalid" : ""} w-75`}
               {...register("dob", { required: "Date of Birth is required" })}
             />
-            {errors.dob && <div className="invalid-feedback">{errors.dob.message}</div>}
+            {errors.dob && (
+              <div className="invalid-feedback">{errors.dob.message}</div>
+            )}
           </div>
-        </div>
 
-        {/* Gender */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Gender:</label>
-          <div className="col-sm-9 d-flex align-items-center gap-3">
-            <div className="form-check">
-              <input type="radio" value="Male" className="form-check-input" {...register("gender", { required: "Gender is required" })} />
-              <label className="form-check-label">Male</label>
+          {/* Gender */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Gender:</label>
+            <div className="d-flex gap-3">
+              <div className="form-check">
+                <input
+                  type="radio"
+                  value="Male"
+                  className="form-check-input"
+                  {...register("gender", { required: "Gender is required" })}
+                />
+                <label className="form-check-label" style={{"color": "gray", "fontWeight": "600"}}>Male</label>
+              </div>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  value="Female"
+                  className="form-check-input"
+                  {...register("gender")}
+                />
+                <label className="form-check-label" style={{"color": "gray", "fontWeight": "600"}}>Female</label>
+              </div>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  value="Others"
+                  className="form-check-input"
+                  {...register("gender")}
+                />
+                <label className="form-check-label" style={{"color": "gray", "fontWeight": "600"}}>Others</label>
+              </div>
             </div>
-            <div className="form-check">
-              <input type="radio" value="Female" className="form-check-input" {...register("gender")} />
-              <label className="form-check-label">Female</label>
-            </div>
-            <div className="form-check">
-              <input type="radio" value="Others" className="form-check-input" {...register("gender")} />
-              <label className="form-check-label">Others</label>
-            </div>
-            {errors.gender && <div className="text-danger">{errors.gender.message}</div>}
+            {errors.gender && (
+              <div className="text-danger">{errors.gender.message}</div>
+            )}
           </div>
-        </div>
 
-        {/* Category */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Category:</label>
-          <div className="col-sm-9">
+          {/* Category */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Category:</label>
             <select
-              className={`form-select ${errors.category ? "is-invalid" : ""}`}
+              className={`form-select ${errors.category ? "is-invalid" : ""} w-75`}
               {...register("category", { required: "Category is required" })}
             >
               <option value="">Select Category</option>
@@ -200,71 +227,83 @@ function FormLogin() {
               <option value="OBC">OBC</option>
               <option value="Defence">Defence</option>
             </select>
-            {errors.category && <div className="invalid-feedback">{errors.category.message}</div>}
+            {errors.category && (
+              <div className="invalid-feedback">{errors.category.message}</div>
+            )}
           </div>
-        </div>
 
-        {/* PwD */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">PwD (Disability):</label>
-          <div className="col-sm-9">
+          {/* PwD */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">PwD (Disability):</label>
             <select
-              className={`form-select ${errors.pwd ? "is-invalid" : ""}`}
+              className={`form-select ${errors.pwd ? "is-invalid" : ""} w-75`}
               {...register("pwd", { required: "This field is required" })}
             >
               <option value="">Select</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
-            {errors.pwd && <div className="invalid-feedback">{errors.pwd.message}</div>}
+            {errors.pwd && (
+              <div className="invalid-feedback">{errors.pwd.message}</div>
+            )}
           </div>
-        </div>
 
-        {/* All India Rank */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">All India Rank:</label>
-          <div className="col-sm-9">
+          {/* All India Rank */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">All India Rank:</label>
             <input
               type="number"
               min="1"
-              className={`form-control ${errors.allIndiaRank ? "is-invalid" : ""}`}
-              placeholder="Enter All India Rank"
+              className={`form-control ${
+                errors.allIndiaRank ? "is-invalid" : ""
+              } w-75`}
+              // placeholder="Enter All India Rank"
               {...register("allIndiaRank", {
                 required: "All India Rank is required",
                 min: { value: 1, message: "Rank cannot be negative or zero" },
               })}
             />
-            {errors.allIndiaRank && <div className="invalid-feedback">{errors.allIndiaRank.message}</div>}
+            {errors.allIndiaRank && (
+              <div className="invalid-feedback">
+                {errors.allIndiaRank.message}
+              </div>
+            )}
           </div>
-        </div>
 
-        {/* Category Rank */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Category Rank:</label>
-          <div className="col-sm-9">
+          {/* Category Rank */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Category Rank:</label>
             <input
               type="number"
               min="1"
-              className={`form-control ${errors.categoryRank ? "is-invalid" : ""}`}
-              placeholder="Enter Category Rank"
+              className={`form-control ${
+                errors.categoryRank ? "is-invalid" : ""
+              } w-75`}
+              // placeholder="Enter Category Rank"
               {...register("categoryRank", {
                 required: "Category Rank is required",
                 min: { value: 1, message: "Rank cannot be negative or zero" },
               })}
             />
-            {errors.categoryRank && <div className="invalid-feedback">{errors.categoryRank.message}</div>}
+            {errors.categoryRank && (
+              <div className="invalid-feedback">
+                {errors.categoryRank.message}
+              </div>
+            )}
           </div>
-        </div>
 
-        {/* Branch Preferences (five separate) */}
-        <p>Select five branch according to your preference.</p>
-        {[1, 2, 3, 4, 5].map((num) => (
-          <div className="row mb-3" key={num}>
-            <label className="col-sm-3 col-form-label">Preference {num}:</label>
-            <div className="col-sm-9">
+          {/* Branch Preferences */}
+          <p style={{"color": "gray", "fontWeight": "600"}}>Select five branches according to your preference:</p>
+          {[1, 2, 3, 4, 5].map((num) => (
+            <div className="mb-3" key={num}>
+              <label className="form-label mb-1 pb-0">Preference {num}:</label>
               <select
-                className={`form-select ${errors[`preference${num}`] ? "is-invalid" : ""}`}
-                {...register(`preference${num}`, { required: `Preference ${num} is required` })}
+                className={`form-select ${
+                  errors[`preference${num}`] ? "is-invalid" : ""
+                } w-75`}
+                {...register(`preference${num}`, {
+                  required: `Preference ${num} is required`,
+                })}
               >
                 <option value="">Select Branch</option>
                 {branches.map((branch, idx) => (
@@ -274,19 +313,21 @@ function FormLogin() {
                 ))}
               </select>
               {errors[`preference${num}`] && (
-                <div className="invalid-feedback">{errors[`preference${num}`].message}</div>
+                <div className="invalid-feedback">
+                  {errors[`preference${num}`].message}
+                </div>
               )}
             </div>
-          </div>
-        ))}
+          ))}
 
-        {/* State of Eligibility */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">State of Eligibility:</label>
-          <div className="col-sm-9">
+          {/* State of Eligibility */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">State of Eligibility:</label>
             <select
-              className={`form-select ${errors.state ? "is-invalid" : ""}`}
-              {...register("state", { required: "State of Eligibility is required" })}
+              className={`form-select ${errors.state ? "is-invalid" : ""} w-75`}
+              {...register("state", {
+                required: "State of Eligibility is required",
+              })}
             >
               <option value="">Select State</option>
               {indianStates.map((state, idx) => (
@@ -295,18 +336,18 @@ function FormLogin() {
                 </option>
               ))}
             </select>
-            {errors.state && <div className="invalid-feedback">{errors.state.message}</div>}
+            {errors.state && (
+              <div className="invalid-feedback">{errors.state.message}</div>
+            )}
           </div>
-        </div>
 
-        {/* Email */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Email:</label>
-          <div className="col-sm-9">
+          {/* Email */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Email:</label>
             <input
               type="email"
-              className={`form-control ${errors.email ? "is-invalid" : ""}`}
-              placeholder="Enter your email"
+              className={`form-control ${errors.email ? "is-invalid" : ""} w-75`}
+              // placeholder="Enter your email"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -315,40 +356,39 @@ function FormLogin() {
                 },
               })}
             />
-            {errors.email && <div className="invalid-feedback">{errors.email.message}</div>}
+            {errors.email && (
+              <div className="invalid-feedback">{errors.email.message}</div>
+            )}
           </div>
-        </div>
 
-
-        {/* Mobile number */}
-        <div className="row mb-3">
-          <label className="col-sm-3 col-form-label">Mobile Number:</label>
-          <div className="col-sm-9">
+          {/* Mobile number */}
+          <div className="mb-3">
+            <label className="form-label mb-1 pb-0">Mobile Number:</label>
             <input
               type="number"
-              className={`form-control ${errors.mobileNumber ? "is-invalid" : ""}`}
-              placeholder="Mobile Number"
+              className={`form-control ${
+                errors.mobileNumber ? "is-invalid" : ""
+              } w-75`}
+              // placeholder="Enter Mobile Number"
               {...register("mobileNumber", {
-                required: "Mobile Number is required"
-
+                required: "Mobile Number is required",
               })}
             />
             {errors.mobileNumber && (
-              <div className="invalid-feedback">{errors.mobileNumber.message}</div>
+              <div className="invalid-feedback">
+                {errors.mobileNumber.message}
+              </div>
             )}
           </div>
-        </div>
 
-        {/* Submit */}
-        <div className="row">
-          <div className="col-sm-12 text-center">
-            <button type="submit" className="btn btn-primary w-50">
+          {/* Submit */}
+          <div className="text-start">
+            <button type="submit" className="btn btn-primary w-25">
               Submit
             </button>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
     </>
   );
 }

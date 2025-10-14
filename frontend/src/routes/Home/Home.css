@@ -1,7 +1,10 @@
 /* Top bar */
 .top-bar {
-  background-color: #F9FAFB; /* neutral */
-  padding: 15px 20px;
+  /* background-color: #F9FAFB;  */
+  /* background: #020024; */
+background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(73, 73, 186, 1) 0%, rgba(0, 212, 255, 1) 100%);
+
+  padding: 10px 15px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
@@ -13,7 +16,7 @@
 .college-title h1 {
   font-size: 2.3rem;
   font-weight: 1000;
-  color: #4300FF; /* primary blue */
+  color: #1d1041; /* primary blue */
   margin-top: 10px;
 }
 

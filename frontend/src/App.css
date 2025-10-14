@@ -113,7 +113,8 @@ body.dark .carousel-item img:hover {
 
 
 .text-style * {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important; */
+  font-family: "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Apple Legacy Chevron", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
   font-size: 16px !important;
   color: #586373 !important;
   line-height: 1.3 !important;

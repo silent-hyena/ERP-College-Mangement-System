@@ -6,7 +6,7 @@ import './quickAccess.css'; // Import custom CSS for additional styling
 
 const QuickAccess = () => {
   return (
-    <section className="py-5 bg-light">
+    <section className="py-5" style ={{backgroundColor: "#faf9f5"}}>
       <div className="container">
         <h3 className="text-center mb-5 fw-bold" style={{color:"#0d47a1"}}>Quick Access</h3>
         <div className="row g-4">
