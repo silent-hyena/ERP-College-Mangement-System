@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import AutoDismissAlert from "../../AutoDismissedAlert";
 import TopProgressBar from "../../components/ProgessBar/ProgressBar";
-
+import { downloadData } from "../../../DownloadUtil";
 import "./admissionStatus.css";
 
 
@@ -69,6 +69,12 @@ export default function ApplicationFormCheck() {
           </div>
 
           {/* Table Section */}
+          {formData && <button
+                    className="btn btn-danger"
+                    onClick={() => downloadData(formData, "pdf", "student_record")}
+                >
+                    Download PDF
+                </button>}
           {formData && (
             <div className="table-card">
               <h5>Application Form </h5>

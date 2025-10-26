@@ -6,10 +6,10 @@ import AutoDismissAlert from "../../AutoDismissedAlert";
 import TopProgressBar from "../../components/ProgessBar/ProgressBar.jsx";
 
 export default function StaffLogin() {
-  const [alert,setAlert] = useState(false);
+  const [alert, setAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null)
   const [alertType, setAlertType] = useState("success")
-  const [loadingState,setLoadingState] = useState(false)
+  const [loadingState, setLoadingState] = useState(false)
 
   const {
     register,
@@ -19,34 +19,34 @@ export default function StaffLogin() {
 
   const navigate = useNavigate();
 
-  async function onSubmit(data){
-    
+  async function onSubmit(data) {
+
     setLoadingState(true)
     const response = await fetch("/staff/portallogin", {
       method: "POST",
-      headers: { "Content-Type": "application/json" }, 
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
-      credentials: "include" 
+      credentials: "include"
     });
 
     const Data = await response.json();
     setLoadingState(false)
 
-    if(Data.status =="success"){
+    if (Data.status == "success") {
       navigate("/staffadminpage")
       // console.log(Data)
     }
-    else{
+    else {
       setAlertMessage(Data.alert)
       setAlertType("failue")
       setAlert(true);
     }
-    
+
   };
 
   return (
-    <> <TopProgressBar loading={loadingState}/>
-       {alert && <AutoDismissAlert message={alertMessage} type ={alertType} onClose={() => setAlert(false)} />}
+    <> <TopProgressBar loading={loadingState} />
+      {alert && <AutoDismissAlert message={alertMessage} type={alertType} onClose={() => setAlert(false)} />}
       <Navbar />
       <div className="container-fluid vh-100 d-flex align-items-center">
         <div className="row w-100">
@@ -81,7 +81,7 @@ export default function StaffLogin() {
                     type="email"
                     id="email"
                     className={`form-control ${errors.email ? "is-invalid" : ""}`}
-                    placeholder="Enter staff email"
+                    // placeholder="Enter staff email"
                     {...register("email", { required: "Email is required" })}
                   />
                   {errors.email && (
@@ -109,12 +109,33 @@ export default function StaffLogin() {
                     type="password"
                     id="password"
                     className={`form-control ${errors.password ? "is-invalid" : ""}`}
-                    placeholder="Enter password"
+                    // placeholder="Enter password"
                     {...register("password", { required: "Password is required" })}
                   />
                   {errors.password && (
                     <div className="invalid-feedback">
                       {errors.password.message}
+                    </div>
+                  )}
+                </div>
+
+                {/* Role Selection */}
+                <div className="mb-3">
+                  <label htmlFor="role" className="form-label">
+                    Select Role
+                  </label>
+                  <select
+                    id="role"
+                    className={`form-select ${errors.role ? "is-invalid" : ""}`}
+                    {...register("role", { required: "Role is required" })}
+                  >
+                    <option value="">Select Role</option>
+                    <option value="admin">Administrator</option>
+                    <option value="instructor">Instructor</option>
+                  </select>
+                  {errors.role && (
+                    <div className="invalid-feedback">
+                      {errors.role.message}
                     </div>
                   )}
                 </div>

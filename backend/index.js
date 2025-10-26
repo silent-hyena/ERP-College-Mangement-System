@@ -11,6 +11,7 @@ import staffRoute from "./router/staff.js";
 import studentRoute from "./router/student.js";
 import admissionRoute from "./router/admission.js";
 import adminRoute from "./router/admin.js"
+import instructor from "./router/instructor.js"
 
 
 dotenv.config();
@@ -35,13 +36,14 @@ app.use("/staff", staffRoute);
 app.use("/student", studentRoute);
 app.use("/admission", admissionRoute);
 app.use("/staff/admin",adminRoute)
+app.use("/staff/instructor",instructor);
 
 // Serve frontend (Vite build)
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // Catch-all for SPA routes
-app.get("*", (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
 });
 

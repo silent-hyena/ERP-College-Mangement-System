@@ -56,19 +56,11 @@ function StudentPortal() {
               className="vh-100 flex-column ps-2 pt-2 ps-2 pe-2"
               style={{ width: "210px", position: "sticky", top: 0, height: "100vh", overflowY: "auto" }}
             >
-              <button
-                className="mt-3 sidebar-btn d-flex align-items-center gap-2"
-                onClick={() => setActiveSection("home")}
-              >
-                <FaHome /> Home
-              </button>
+            
 
-              <button
-                className="mt-3 sidebar-btn d-flex align-items-center gap-2"
-                onClick={() => setActiveSection("feeStructure")}
-              >
-                <FaFileInvoiceDollar /> Fee Structure
-              </button>
+              <Link className="mt-3 sidebar2-btn d-flex align-items-center gap-2" to="/feeStructure">
+              <FaFileInvoiceDollar />Fee Structure
+              </Link>
 
               <button
                 className="mt-3 sidebar-btn d-flex align-items-center gap-2"

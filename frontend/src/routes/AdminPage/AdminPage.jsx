@@ -5,6 +5,7 @@ import EmailForm from "../../MailBox";
 import DatbaseTables from "./DatabaseCards";
 import { useState } from "react";
 
+
 import {
     FaUsers,
     FaBullhorn,
@@ -17,6 +18,9 @@ import {
 
 function AdminPage() {
     const [activeComponent, setActiveComponent] = useState("EmailBox");
+
+
+  
 
     const renderComponent = () => {
         switch (activeComponent) {
@@ -76,17 +80,18 @@ function AdminPage() {
                         </nav>
                     </div>
 
-                    
+
                 </div>
 
                 {/* EMAIL FORM */}
-                    <div className="flex-grow-1 p-5">
-                        {renderComponent()}
-                    </div>
+                <div className="flex-grow-1 p-5">
+                    {renderComponent()}
+                </div>
                 {/* <div className="" style={{height:"1000px"}}></div> */}
 
-                
+
             </div>
+         
             <Footer />
         </>
     );

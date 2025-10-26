@@ -90,7 +90,7 @@ function FormLogin() {
 
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
-          className="p-4 border bg-light rounded shadow w-100"
+          className="p-5 m-5  border  rounded shadow w-100"
         >
           {/* Application Number */}
           <p style={{"margin-left": "0px", "color": "gray", "fontWeight": "600"}}> <span style={{ color: "red" }}>* </span>Indicates required fields.</p>
@@ -220,7 +220,7 @@ function FormLogin() {
               className={`form-select ${errors.category ? "is-invalid" : ""} w-75`}
               {...register("category", { required: "Category is required" })}
             >
-              <option value="">Select Category</option>
+              <option value="" >Select Category</option>
               <option value="General">General</option>
               <option value="EWS">EWS</option>
               <option value="SC/ST">SC/ST</option>
