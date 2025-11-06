@@ -41,7 +41,7 @@ async function sendEmail(recipient, sub, messageBody) {
 
 
 router.post("/formsubmit", async (req, res) => {
-  console.log(req.body);
+  
   try {
 
     const {
@@ -107,7 +107,7 @@ router.post("/formsubmit", async (req, res) => {
       `;
     await sendEmail(email, emailSubject, emailBody)
 
-    res.status(201).json({ message: "Form submitted successfully!", data: result[0] });
+    res.status(201).json({ message: `Your form has been submitted successfully.`});
   } catch (err) {
     console.error(err.message);
     if (err.code === "23505") {
@@ -125,6 +125,7 @@ router.post("/checkstatus", async (req, res) => {
 
     const response = await sql`SELECT * FROM admissions
                                 WHERE  application_number =${applicationNumber}`
+
     if (!response.length) {
       return res.json({ alert: "No record found for the given application number." });
     }

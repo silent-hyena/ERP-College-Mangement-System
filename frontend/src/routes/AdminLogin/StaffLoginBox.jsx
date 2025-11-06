@@ -96,12 +96,12 @@ export default function StaffLogin() {
                   <label htmlFor="password" className="form-label mb-0">
                     Password
                   </label>
-                  <a
+                  {/* <a
                     href="/staff-forgot-password"
                     className="small text-decoration-none"
                   >
                     Forgot password?
-                  </a>
+                  </a> */}
                 </div>
 
                 <div className="mb-3">

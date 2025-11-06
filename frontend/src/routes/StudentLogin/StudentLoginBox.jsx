@@ -34,7 +34,7 @@ export default function StudentLogin() {
     setLoadingState(false)
     if (Data.status == "success") {
       navigate("/studentportal")
-      // console.log(Data)
+     
     }
     else {
       setAlertMessage(Data.alert)
@@ -78,7 +78,7 @@ export default function StudentLogin() {
                     type="email"
                     id="email"
                     className={`form-control ${errors.email ? "is-invalid" : ""}`}
-                    placeholder="Enter email"
+                   
                     {...register("email", { required: "Email is required" })}
                   />
                   {errors.email && <div className="invalid-feedback">{errors.email.message}</div>}
@@ -89,16 +89,16 @@ export default function StudentLogin() {
                   <label htmlFor="password" className="form-label mb-0">
                     Password
                   </label>
-                  <a href="/forgot-password" className="small text-decoration-none">
+                  {/* <a href="/forgot-password" className="small text-decoration-none">
                     Forgot password?
-                  </a>
+                  </a> */}
                 </div>
                 <div className="mb-3">
                   <input
                     type="password"
                     id="password"
                     className={`form-control ${errors.password ? "is-invalid" : ""}`}
-                    placeholder="Enter password"
+                    
                     {...register("password", { required: "Password is required" })}
                   />
                   {errors.password && <div className="invalid-feedback">{errors.password.message}</div>}

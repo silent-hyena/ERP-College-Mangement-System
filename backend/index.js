@@ -43,9 +43,9 @@ const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // Catch-all for SPA routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
-});
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+// });
 
 // Start server
 const PORT = process.env.PORT || 3000;

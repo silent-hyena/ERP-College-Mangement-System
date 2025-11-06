@@ -84,23 +84,24 @@ function FormLogin() {
         />
       )}
 
+     
+
       <div className="admission-form-container mt-0">
         <h2 className="mb-4 text-center">Admission Form</h2>
-        
+
 
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
           className="p-5 m-5  border  rounded shadow w-100"
         >
           {/* Application Number */}
-          <p style={{"margin-left": "0px", "color": "gray", "fontWeight": "600"}}> <span style={{ color: "red" }}>* </span>Indicates required fields.</p>
+          <p style={{ "margin-left": "0px", "color": "gray", "fontWeight": "600" }}> <span style={{ color: "red" }}>* </span>Indicates required fields.</p>
           <div className="mb-3">
             <label className="form-label mb-1 pb-0">Application Number:</label>
             <input
               type="number"
-              className={`form-control ${
-                errors.applicationNumber ? "is-invalid" : ""
-              } w-75` }
+              className={`form-control ${errors.applicationNumber ? "is-invalid" : ""
+                } w-75`}
               // placeholder="Enter JEE Mains Application Number"
               {...register("applicationNumber", {
                 required: "Application Number is required",
@@ -132,9 +133,8 @@ function FormLogin() {
             <label className="form-label mb-1 pb-0">Father's Name:</label>
             <input
               type="text"
-              className={`form-control ${
-                errors.fatherName ? "is-invalid" : ""
-              } w-75`}
+              className={`form-control ${errors.fatherName ? "is-invalid" : ""
+                } w-75`}
               // placeholder="Enter Father's Name"
               {...register("fatherName", { required: "Father Name is required" })}
             />
@@ -150,9 +150,8 @@ function FormLogin() {
             <label className="form-label mb-1 pb-0">Mother's Name:</label>
             <input
               type="text"
-              className={`form-control ${
-                errors.motherName ? "is-invalid" : ""
-              } w-75`}
+              className={`form-control ${errors.motherName ? "is-invalid" : ""
+                } w-75`}
               // placeholder="Enter Mother's Name"
               {...register("motherName", { required: "Mother Name is required" })}
             />
@@ -187,7 +186,7 @@ function FormLogin() {
                   className="form-check-input"
                   {...register("gender", { required: "Gender is required" })}
                 />
-                <label className="form-check-label" style={{"color": "gray", "fontWeight": "600"}}>Male</label>
+                <label className="form-check-label" style={{ "color": "gray", "fontWeight": "600" }}>Male</label>
               </div>
               <div className="form-check">
                 <input
@@ -196,7 +195,7 @@ function FormLogin() {
                   className="form-check-input"
                   {...register("gender")}
                 />
-                <label className="form-check-label" style={{"color": "gray", "fontWeight": "600"}}>Female</label>
+                <label className="form-check-label" style={{ "color": "gray", "fontWeight": "600" }}>Female</label>
               </div>
               <div className="form-check">
                 <input
@@ -205,7 +204,7 @@ function FormLogin() {
                   className="form-check-input"
                   {...register("gender")}
                 />
-                <label className="form-check-label" style={{"color": "gray", "fontWeight": "600"}}>Others</label>
+                <label className="form-check-label" style={{ "color": "gray", "fontWeight": "600" }}>Others</label>
               </div>
             </div>
             {errors.gender && (
@@ -254,9 +253,8 @@ function FormLogin() {
             <input
               type="number"
               min="1"
-              className={`form-control ${
-                errors.allIndiaRank ? "is-invalid" : ""
-              } w-75`}
+              className={`form-control ${errors.allIndiaRank ? "is-invalid" : ""
+                } w-75`}
               // placeholder="Enter All India Rank"
               {...register("allIndiaRank", {
                 required: "All India Rank is required",
@@ -276,9 +274,8 @@ function FormLogin() {
             <input
               type="number"
               min="1"
-              className={`form-control ${
-                errors.categoryRank ? "is-invalid" : ""
-              } w-75`}
+              className={`form-control ${errors.categoryRank ? "is-invalid" : ""
+                } w-75`}
               // placeholder="Enter Category Rank"
               {...register("categoryRank", {
                 required: "Category Rank is required",
@@ -293,14 +290,13 @@ function FormLogin() {
           </div>
 
           {/* Branch Preferences */}
-          <p style={{"color": "gray", "fontWeight": "600"}}>Select five branches according to your preference:</p>
+          <p style={{ "color": "gray", "fontWeight": "600" }}>Select five branches according to your preference:</p>
           {[1, 2, 3, 4, 5].map((num) => (
             <div className="mb-3" key={num}>
               <label className="form-label mb-1 pb-0">Preference {num}:</label>
               <select
-                className={`form-select ${
-                  errors[`preference${num}`] ? "is-invalid" : ""
-                } w-75`}
+                className={`form-select ${errors[`preference${num}`] ? "is-invalid" : ""
+                  } w-75`}
                 {...register(`preference${num}`, {
                   required: `Preference ${num} is required`,
                 })}
@@ -366,9 +362,8 @@ function FormLogin() {
             <label className="form-label mb-1 pb-0">Mobile Number:</label>
             <input
               type="number"
-              className={`form-control ${
-                errors.mobileNumber ? "is-invalid" : ""
-              } w-75`}
+              className={`form-control ${errors.mobileNumber ? "is-invalid" : ""
+                } w-75`}
               // placeholder="Enter Mobile Number"
               {...register("mobileNumber", {
                 required: "Mobile Number is required",
