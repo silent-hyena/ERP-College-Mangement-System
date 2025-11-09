@@ -38,7 +38,7 @@ function NewAdmission() {
         <>
             <Navbar />
 
-            <div className="d-flex" style={{ backgroundColor: "rgb(240, 241, 242)" }}>
+            <div className="d-flex" style={{ backgroundColor: "rgba(249, 252, 255, 1)" }}>
                 <div className="sidebar-wrapper">
                     <Sidebar
                         handleFormBtn={handleFormBtn}

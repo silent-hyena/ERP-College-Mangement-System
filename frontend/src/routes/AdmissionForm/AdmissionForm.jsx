@@ -92,7 +92,7 @@ function FormLogin() {
 
         <form
           onSubmit={handleSubmit(handleFormSubmit)}
-          className="p-5 m-5  border  rounded shadow w-100"
+          className="p-5   border  rounded shadow w-100 admission-form-card"
         >
           {/* Application Number */}
           <p style={{ "margin-left": "0px", "color": "gray", "fontWeight": "600" }}> <span style={{ color: "red" }}>* </span>Indicates required fields.</p>
