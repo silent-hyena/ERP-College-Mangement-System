@@ -1,0 +1,67 @@
+.admission-intro-container {
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.admission-intro-card {
+  background: white;
+  border-radius: 14px;
+  padding: 2.5rem 3rem;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0px 6px 14px rgba(0,0,0,0.10);
+  border-left: 6px solid #FBBF24; /* gold accent - keep */
+}
+
+.intro-title {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: #1e40af; /* modern dark slate */
+  margin-bottom: 1.0rem;
+  letter-spacing: -0.5px;
+}
+
+.intro-desc {
+  font-size: 1.12rem;
+  color: #334155; /* softer slate */
+  margin-bottom: 1.8rem;
+  line-height: 1.7rem;
+  font-weight: 400;
+}
+
+.intro-subtitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1e40af; /* deep modern blue */
+}
+
+.intro-steps {
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #1e293b; /* slate dark text */
+  line-height: 1.8rem;
+  font-weight: 500;
+}
+
+.start-btn {
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(73,73,186,1) 0%, rgba(0,212,255,1) 100%);
+  color: white;
+  font-weight: 700;
+  border-radius: 10px;
+  font-size: 1.15rem;
+  padding: 14px 36px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.start-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  opacity: 0.97;
+}
