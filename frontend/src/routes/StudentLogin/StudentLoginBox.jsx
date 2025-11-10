@@ -48,14 +48,15 @@ export default function StudentLogin() {
     <><TopProgressBar loading={loadingState}/>
       {alert && <AutoDismissAlert message={alertMessage} type={alertType} onClose={() => setAlert(false)} />}
       <Navbar />
-      <div className="container-fluid vh-100 d-flex align-items-center">
+      <div className="container-fluid vh-100 d-flex align-items-center"
+       style={{backgroundColor : "#f2faffff"}}>
         <div className="row w-100">
           {/* Left Intro Section */}
-          <div className="col-md-6 d-none d-md-flex flex-column justify-content-center px-5">
+          <div className="col-md-8 d-none d-md-flex flex-column justify-content-center px-5">
             <h1 className="fw-bold mb-3" style={{ color: "#0d1b2a" }}>
               Student Portal
             </h1>
-            <p className="fs-5 text-muted" style={{ maxWidth: "500px" }}>
+            <p className="fs-3 text-muted" style={{ maxWidth: "700px" }}>
               Welcome to your all-in-one student portal — a single place to view
               grade reports, pay fees securely, and register for upcoming
               courses with ease. Stay organized and manage your academic journey
@@ -64,8 +65,8 @@ export default function StudentLogin() {
           </div>
 
           {/* Right Login Section */}
-          <div className="col-12 col-md-6 d-flex justify-content-center align-items-center">
-            <div className="card shadow-sm bg-light p-4" style={{ maxWidth: "400px", width: "100%" }}>
+          <div className="col-12 col-md-4 d-flex justify-content-center align-items-center">
+            <div className="card shadow-sm bg-opacity-100 p-4 rounded-4 " style={{ maxWidth: "400px", width: "100%" }}>
               <h3 className="text-center mb-4">Student Login</h3>
 
               <form onSubmit={handleSubmit(onSubmit)}>

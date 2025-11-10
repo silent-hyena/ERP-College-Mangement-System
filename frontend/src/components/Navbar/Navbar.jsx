@@ -34,7 +34,7 @@ function Navbar() {
                                 <ul className="dropdown-menu dropdown-menu-end">
 
                                     <Link className="dropdown-item" to="/newAdmission">Apply For New Admission</Link>
-                                    <Link className="dropdown-item" to="/counselling">Counselling</Link>
+                                    {/* <Link className="dropdown-item" to="/counselling">Counselling</Link> */}
                                     <Link className="dropdown-item" to="/feeStructure">Fee Strucure</Link>
 
                                 </ul>

@@ -6,7 +6,7 @@ function Banner() {
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img src="/campus-image.png" className="d-block w-100" alt="img1" />
-          <div className="carousel-caption mb-0 pb-0  " >
+          <div className="carousel-caption mb-0 pb-0" >
             
             <p >One platform. Complete institutional management.</p>
           </div>

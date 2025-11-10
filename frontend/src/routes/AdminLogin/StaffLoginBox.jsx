@@ -48,14 +48,15 @@ export default function StaffLogin() {
     <> <TopProgressBar loading={loadingState} />
       {alert && <AutoDismissAlert message={alertMessage} type={alertType} onClose={() => setAlert(false)} />}
       <Navbar />
-      <div className="container-fluid vh-100 d-flex align-items-center">
+      <div className="container-fluid vh-100 d-flex align-items-center"
+      style={{backgroundColor : "#f2faffff"}}>
         <div className="row w-100">
           {/* 🔹 Left Intro Section */}
-          <div className="col-md-6 d-none d-md-flex flex-column justify-content-center px-5">
+          <div className="col-md-8 d-none d-md-flex flex-column justify-content-center px-5">
             <h1 className="fw-bold mb-3" style={{ color: "#0d1b2a" }}>
               Staff Portal
             </h1>
-            <p className="fs-5 text-muted" style={{ maxWidth: "500px" }}>
+            <p className="fs-2 text-muted" style={{ maxWidth: "950px" }}>
               Manage academic operations with ease. The staff portal serves as a
               single point for handling administrative tasks, assisting
               professors in maintaining student records, and streamlining other
@@ -64,10 +65,10 @@ export default function StaffLogin() {
           </div>
 
           {/* 🔹 Right Login Section */}
-          <div className="col-12 col-md-6 d-flex justify-content-center align-items-center">
+          <div className="col-12 col-md-4 d-flex justify-content-center align-items-center">
             <div
-              className="card shadow-sm bg-light p-4"
-              style={{ maxWidth: "400px", width: "100%" }}
+              className="card shadow-sm rounded-4 p-3"
+              style={{ maxWidth: "500px", width: "100%" }}
             >
               <h3 className="text-center mb-4">Staff Login</h3>
 

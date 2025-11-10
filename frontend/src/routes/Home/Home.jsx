@@ -1,6 +1,6 @@
 import React from "react";
-import { useState } from "react";
-import { useTheme } from "../../useTheme";
+// import { useState } from "react";
+// import { useTheme } from "../../useTheme";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import Footer from "../../components/Footer/AppFooter.jsx";
 import Banner from "../../components/Carousel/Carousel.jsx";
@@ -10,20 +10,20 @@ import Performance from "../../components/Performance/Performance.jsx";
 
 function Home() {
 
-  const { toggleTheme } = useTheme();
+  // const { toggleTheme } = useTheme();
 
-  const [themeIcon, setThemeIcon] = useState("icons8-sun-50.png")
+  // const [themeIcon, setThemeIcon] = useState("icons8-sun-50.png")
 
  
 
 
-  function handleThemeIcon() {
-    setThemeIcon((themeIcon == "icons8-sun-50.png") ? "icon-moon-white.png" : "icons8-sun-50.png")
-  }
-  function handleThemeClick() {
-    toggleTheme();
-    handleThemeIcon();
-  }
+  // function handleThemeIcon() {
+  //   setThemeIcon((themeIcon == "icons8-sun-50.png") ? "icon-moon-white.png" : "icons8-sun-50.png")
+  // }
+  // function handleThemeClick() {
+  //   toggleTheme();
+  //   handleThemeIcon();
+  // }
 
 
 

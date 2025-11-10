@@ -55,7 +55,7 @@ export default function ApplicationFormCheck() {
                   type="text"
                   {...register("applicationNumber", { required: true })}
                   className={`form-control ${errors.applicationNumber ? "is-invalid" : ""}`}
-                  placeholder="Enter your application number"
+                  // placeholder="Enter your application number"
                 />
                 {errors.applicationNumber && (
                   <div className="invalid-feedback">Application number is required</div>

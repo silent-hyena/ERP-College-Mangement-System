@@ -129,7 +129,7 @@ export default function RazorpayPayment({ defaultStudent }) {
             <input
               type="text"
               className={`form-control ${errors.name ? "is-invalid" : ""}`}
-              placeholder="Enter your name"
+              // placeholder="Enter your name"
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && <div className="invalid-feedback">{errors.name.message}</div>}
@@ -140,7 +140,7 @@ export default function RazorpayPayment({ defaultStudent }) {
             <input
               type="number"
               className={`form-control ${errors.amount ? "is-invalid" : ""}`}
-              placeholder="Enter amount"
+              // placeholder="Enter amount"
               {...register("amount", { required: "Amount is required", min: 1 })}
             />
             {errors.amount && <div className="invalid-feedback">{errors.amount.message}</div>}
