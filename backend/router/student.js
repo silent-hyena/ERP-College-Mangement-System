@@ -14,6 +14,7 @@ const router = express.Router()
 
 router.post("/portallogin", async (req, res) => {
     const { email = "", password = "" } = req.body;
+    
 
     try {
         const response = await sql`
@@ -53,6 +54,7 @@ router.post("/portallogin", async (req, res) => {
     } catch (err) {
 
         res.status(500).json({ alert: err.message });
+      
     }
 });
 

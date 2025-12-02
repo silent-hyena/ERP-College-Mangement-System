@@ -38,7 +38,7 @@ app.use("/admission", admissionRoute);
 app.use("/staff/admin",adminRoute)
 app.use("/staff/instructor",instructor);
 
-// Serve frontend (Vite build)
+// Serve frontend
 const __dirname = path.resolve();
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
