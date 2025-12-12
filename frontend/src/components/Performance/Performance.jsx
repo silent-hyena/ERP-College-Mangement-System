@@ -3,7 +3,7 @@ import "./Performance.css";
 
 const stats = [
   { title: "Faculty", value: "1000+" },
-  { title: "Students", value: "13,000+" },
+  { title: "Students", value: "7500+" },
   { title: "Publications", value: "3,500+" },
   { title: "Patents", value: "450+" },
   { title: "Projects", value: "2,800+" },

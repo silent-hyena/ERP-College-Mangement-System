@@ -5,7 +5,7 @@ const Sidebar = ({ handleFormCheck, handleFormBtn, handlePaymentBtn }) => {
   return (
     <div className='sidebar'>
         {/* SIDEBAR */}
-                <div className="sidebar-text-style bg-light d-flex m-1">
+                <div className="sidebar-text-style  d-flex m-1">
 
                     <nav className="vh-100 flex-column pt-4">
 

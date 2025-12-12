@@ -5,8 +5,7 @@ import ApplicationFormCheck from "../ApplicationStatus/AdmissionStatus.jsx"
 import RazorpayPayment from "../RazorpayPayment/Razorpay.jsx"
 import Footer from "../../components/Footer/AppFooter";
 import Sidebar from "../../components/QuickAccess/Sidebar/Sidebar.jsx"
-import AdmissionIntro from "./AdmissionIntro.jsx"
-
+import AdmissionIntro from "../NewAdmission/AdmissionHomePage.jsx"
 function NewAdmission() {
     const [showIntro, setShowIntro] = useState(true);
     const [showAdmissionform, setShowAdmissionForm] = useState(false)

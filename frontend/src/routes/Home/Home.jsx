@@ -6,6 +6,7 @@ import Footer from "../../components/Footer/AppFooter.jsx";
 import Banner from "../../components/Carousel/Carousel.jsx";
 import QuickAccess from "../../components/QuickAccess/QuickAcess.jsx";
 import './Home.css'
+import Departments from "../../Departments/DepartmentOverview.jsx";
 import Performance from "../../components/Performance/Performance.jsx";
 
 function Home() {
@@ -28,7 +29,7 @@ function Home() {
 
 
   return (
-    <div  style = {{"backgroundColor":  "#faf9f5"}}>
+    <div  style = {{"backgroundColor":  "#f0f4f9"}}>
 
       <div className="container-fluid top-bar">
         <div className="row">
@@ -57,6 +58,7 @@ function Home() {
       <Banner />
       {/* <div className="container-fluid " style={{ minHeight: "2000px" }}></div> */}
       <QuickAccess />
+      <Departments/>
       {/* other homepage content */}
       <  Performance />
       <Footer />
