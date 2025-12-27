@@ -55,6 +55,7 @@ function Home() {
         </div>
       </div>
       <Navbar />
+     
       <Banner />
       {/* <div className="container-fluid " style={{ minHeight: "2000px" }}></div> */}
       <QuickAccess />

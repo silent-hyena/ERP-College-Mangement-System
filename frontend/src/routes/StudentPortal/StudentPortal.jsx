@@ -20,7 +20,6 @@ import TopProgressBar from "../../components/ProgessBar/ProgressBar.jsx";
 import downloadGradeReport from "./DownloadGradeReport.jsx";
 
 
-// Dummy components for content sections
 
 const FeeStructure = () => <div>Fee Structure Details</div>;
 
@@ -75,6 +74,7 @@ function StudentPortal() {
 
 
   async function handleGradeBtn() {
+    
     setLoading(true);
     const response = await fetch("/student/gradereport",
       {
