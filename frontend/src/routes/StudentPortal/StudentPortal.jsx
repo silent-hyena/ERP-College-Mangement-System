@@ -23,10 +23,51 @@ import downloadGradeReport from "./DownloadGradeReport.jsx";
 
 const FeeStructure = () => <div>Fee Structure Details</div>;
 
-const CourseRegistration = () => <div>Course Registration Section</div>;
+const CourseRegistration = () =>  <>
+  <div className="container my-4">
+    <div
+      className="alert alert-info text-center p-4 border border-info rounded"
+      role="alert"
+    >
+      <h5 className="mb-1 fw-semibold">Course registration is currently not available</h5>
+      <p className="mb-0 text-muted">
+        Please contact the IT information centre for more info.
+      </p>
+    </div>
+  </div>
+</>;
 
-const FeeReceipt = () => <div>Fee Receipt Section</div>;
-const Feedback = () => <div>Feedback Section</div>;
+
+
+const FeeReceipt = () =>  <>
+  <div className="container my-4">
+    <div
+      className="alert alert-info text-center p-4 border border-info rounded"
+      role="alert"
+    >
+      <h5 className="mb-1 fw-semibold">Fee payment option is not available currently.</h5>
+      <p className="mb-0 text-muted">
+        Please contact the IT information centre for more info.
+      </p>
+    </div>
+  </div>
+</>;
+
+
+
+const Feedback = () => <>
+  <div className="container my-4">
+    <div
+      className="alert alert-info text-center p-4 border border-info rounded"
+      role="alert"
+    >
+      <h5 className="mb-1 fw-semibold">This Facility is Currently Not Available</h5>
+      <p className="mb-0 text-muted">
+        Please contact the IT information centre for more info.
+      </p>
+    </div>
+  </div>
+</>;
 
 function StudentPortal() {
   // State to track current content
@@ -39,7 +80,7 @@ function StudentPortal() {
   const Home = () => (
     <div
       className="card shadow rounded bg-white p-4"
-      // style={{ maxWidth: "1000px" }}
+    // style={{ maxWidth: "1000px" }}
     >
       <h4 className="mb-3">Profile Overview</h4>
       <table className="table table-bordered">
@@ -74,7 +115,7 @@ function StudentPortal() {
 
 
   async function handleGradeBtn() {
-    
+
     setLoading(true);
     const response = await fetch("/student/gradereport",
       {
@@ -82,7 +123,7 @@ function StudentPortal() {
         credentials: "include"
       }
     );
-    const data = await response.json(); 
+    const data = await response.json();
     if (data.message) {
       console.log(data.message)
       setGradeData(data.message);
@@ -150,7 +191,7 @@ function StudentPortal() {
         {/* SIDEBAR */}
 
         <div className="sidebar2">
-          <div className="sidebar-text-style bg-light d-flex">
+          <div className="sidebar-text-style ps-4 bg-light d-flex">
             <nav
               className="vh-100 flex-column ps-2 pt-2 ps-2 pe-2"
               style={{ width: "210px", position: "sticky", top: 0, height: "100vh", overflowY: "auto" }}

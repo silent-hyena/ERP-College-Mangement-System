@@ -2,7 +2,10 @@
 body.dark {
   background-color: #000 !important; /* Full black background */
   color: #bbb !important; /* Default light grey text */
+
 }
+
+
 
 /* Containers, cards, nav, etc. */
 body.dark .light-dark,
@@ -110,6 +113,9 @@ body.dark .carousel-item img:hover {
 
 
 /* LIGHT THEME */
+body {
+  overflow-x: hidden;
+}
 
 
 .text-style * {
@@ -121,7 +127,18 @@ body.dark .carousel-item img:hover {
   transition: color 0.2s ease;
 
 }
-
+.custom-heading {
+  font-family: "JetBrains Mono", monospace;
+  font-optical-sizing: auto;
+  font-feature-settings: normal;
+  font-variation-settings: normal;
+  font-variant-position: normal;
+  font-variant-emoji: normal;
+  font-weight: 400;
+  font-stretch: normal;
+  font-size: 36px;
+  line-height: 15px;
+}
 
 .top-bar {
   background-color: #89CFF3;

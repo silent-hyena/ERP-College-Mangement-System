@@ -2,35 +2,62 @@ import React from "react";
 
 const DisplayTable = ({ data }) => {
   if (!data || data.length === 0) {
-    return <p className="text-center text-gray-600 mt-4">No records available.</p>;
+    return (
+      <div className="text-center text-muted mt-4">
+        No records available.
+      </div>
+    );
   }
 
-  // Get column headers dynamically
   const columns = Object.keys(data[0]);
 
   return (
-    <div className="overflow-x-auto p-4">
-      <table className="min-w-full bg-light-subtle border border-gray-300 rounded-xl text-sm">
-        <thead className="bg-gray-100 text-gray-800">
+    <div
+      className="table-responsive border rounded p-2"
+      style={{
+
+        maxHeight: "1200px",
+        overflowY: "auto",
+        overflowX: "auto",
+      }}
+    >
+      <table
+        className="table table-bordered table-hover table-sm mb-0"
+        style={{
+          tableLayout: "fixed",
+          minWidth: "1100px" 
+        }}
+      >
+        <thead className="table-light sticky-top">
           <tr>
             {columns.map((col) => (
               <th
                 key={col}
-                className="border-b px-4 py-2 text-left font-semibold capitalize"
+                style={{
+                  width: col.toLowerCase() === "id" ? "120px" : "250px",
+                  whiteSpace: "nowrap",
+                }}
+                className="text-capitalize"
               >
                 {col.replaceAll("_", " ")}
               </th>
             ))}
           </tr>
         </thead>
+
         <tbody>
           {data.map((row, idx) => (
-            <tr
-              key={idx}
-              className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}
-            >
+            <tr key={idx}>
               {columns.map((col) => (
-                <td key={col} className="border-b px-4 py-2 text-gray-700">
+                <td
+                  key={col}
+                  style={{
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                  title={String(row[col])} // tooltip on hover
+                >
                   {String(row[col])}
                 </td>
               ))}

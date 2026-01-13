@@ -3,6 +3,9 @@ import Footer from "../../components/Footer/AppFooter";
 import { Link } from "react-router-dom";
 import EmailForm from "../../MailBox";
 import DatbaseTables from "./DatabaseCards";
+import AddEvent from "./EventManger";
+import GetDataBaseTable from "./GetDataBaseTable";
+import AdminIntro from "./AdminIntro";
 import { useState } from "react";
 
 
@@ -17,10 +20,10 @@ import {
 } from "react-icons/fa";
 
 function AdminPage() {
-    const [activeComponent, setActiveComponent] = useState("EmailBox");
+    const [activeComponent, setActiveComponent] = useState("");
 
 
-  
+
 
     const renderComponent = () => {
         switch (activeComponent) {
@@ -28,8 +31,16 @@ function AdminPage() {
                 return <EmailForm />;
             case "Tables":
                 return <DatbaseTables />;
+            case "Event":
+                return <AddEvent />
+            case "StaffTable":
+                return <GetDataBaseTable tableName="staff" />
+            case "CourseTable":
+                return <GetDataBaseTable tableName="course" />
+            case "TransactionTable":
+                return <GetDataBaseTable tableName="transactions" />
             default:
-                return <EmailForm />;
+                return <AdminIntro />;
         }
     };
 
@@ -38,60 +49,71 @@ function AdminPage() {
             <Navbar />
             <div className="d-flex">
                 {/* Flex container to keep sidebar and content side by side */}
-                <div className="sidebar2">
+                <div className="sidebar2"
+                    style={{
+                        width: "210px",     // fixed width
+                        flexShrink: 0
+                    }}>
                     {/* SIDEBAR */}
                     <div className="sidebar-text-style bg-light d-flex">
-                        <nav className="vh-100 flex-column ps-2 pt-2">
-                            <ul className="fs-6 nav nav-pills flex-column">
-                                <Link className="mt-3 sidebar2-btn d-flex align-items-center gap-2" to="/">
-                                    <FaUsers className="w-25" /> User Management & Roles
-                                </Link>
-
-                                {/* <Link className="mt-3 sidebar2-btn d-flex align-items-center gap-2" to="/">
-                                    <FaBullhorn className="w-25" /> Notices & Announcements
-                                </Link> */}
-
-                                <Link className="mt-3 sidebar2-btn d-flex align-items-center gap-2" to="/communication">
-                                    <FaEnvelopeOpenText /> Communication
-                                </Link>
-
-                                <Link className="mt-3 sidebar2-btn d-flex align-items-center gap-2" to="/courses">
-                                    <FaBookOpen /> Course & Curriculum
-                                </Link>
-
-                                <Link className="mt-3 sidebar2-btn d-flex align-items-center gap-2" to="/payments">
-                                    <FaFileInvoiceDollar /> Payment Reports
-                                </Link>
-
-                                {/* <Link className="mt-3 sidebar2-btn d-flex align-items-center gap-2" to="/backup">
-                                    <FaDatabase /> Backup & Restore
-                                </Link> */}
-
+                        <nav className="vh-100 flex-column ps-2 pe-2 pt-2">
+                            {/* <ul className="fs-6 nav nav-pills flex-column">
                                 <Link className="mt-3 sidebar2-btn d-flex align-items-center gap-2" to="/settings">
                                     <FaCog /> Settings
                                 </Link>
-                            </ul>
+                            </ul> */}
                             <button className="mt-3 sidebar-btn d-flex align-items-center gap-2" onClick={() => setActiveComponent("Tables")}>
-                                <FaDatabase /> Database & Tables
+                                <FaDatabase className="w-20" /> Database & Tables
                             </button>
+                            <button className="mt-3 sidebar-btn d-flex align-items-center  gap-2" onClick={() => setActiveComponent("Event")}>
+                                <FaBullhorn className="w-22" /> Notices & Announcements
+                            </button>
+
                             <button className="mt-3 sidebar-btn d-flex align-items-center gap-2" onClick={() => setActiveComponent("EmailBox")}>
-                                <FaBullhorn className="w-25" /> Notices & Announcements
+                                <FaEnvelopeOpenText className="w-22" /> Communication
                             </button>
+
+                            <button className="mt-3 sidebar-btn d-flex align-items-center gap-2" onClick={() => setActiveComponent("StaffTable")}>
+                                <FaUsers className="w-22" /> User Management
+                            </button>
+
+                            <button className="mt-3 sidebar-btn d-flex align-items-center gap-2" onClick={() => setActiveComponent("CourseTable")}>
+                                <FaBookOpen className="w-22" />  Course & Curriculum
+                            </button>
+
+                            <button className="mt-3 sidebar-btn d-flex align-items-center gap-2" onClick={() => setActiveComponent("TransactionTable")}>
+                                <FaFileInvoiceDollar className="w-22" /> Payment Report
+                            </button>
+
+
                         </nav>
                     </div>
 
 
                 </div>
 
-                {/* EMAIL FORM */}
-                <div className="flex-grow-1 p-5">
-                    {renderComponent()}
+                <div
+                    className="flex-grow-1 p-4"
+                    style={{
+                        minWidth: 0,          //  allows flex child to shrink
+                        overflow: "hidden"    //  isolates scrolling
+                    }}
+                >
+                    <div
+                        style={{
+                            width: "100%",
+                            overflowX: "auto"   // scroll ONLY here
+                        }}
+                    >
+                        {renderComponent()}
+                    </div>
                 </div>
-                {/* <div className="" style={{height:"1000px"}}></div> */}
+
+
 
 
             </div>
-         
+          
             <Footer />
         </>
     );

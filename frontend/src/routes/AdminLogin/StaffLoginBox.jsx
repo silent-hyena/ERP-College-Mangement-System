@@ -49,13 +49,13 @@ export default function StaffLogin() {
       {alert && <AutoDismissAlert message={alertMessage} type={alertType} onClose={() => setAlert(false)} />}
       <Navbar />
       <div className="container-fluid vh-100 d-flex align-items-center"
-      style={{backgroundColor : "#f2faffff"}}>
+        style={{ backgroundColor: "#f2faffff" }}>
         <div className="row w-100">
           {/* 🔹 Left Intro Section */}
           <div className="col-md-8 d-none d-md-flex flex-column justify-content-center px-5">
-            <h1 className="fw-bold mb-3" style={{ color: "#0d1b2a" }}>
+            <h3 className="mb-3 text-start fw-bold custom-heading" style={{ color: "#094b92", fontSize: "46px" }}>
               Staff Portal
-            </h1>
+            </h3>
             <p className="fs-2 text-muted" style={{ maxWidth: "950px" }}>
               Manage academic operations with ease. The staff portal serves as a
               single point for handling administrative tasks, assisting

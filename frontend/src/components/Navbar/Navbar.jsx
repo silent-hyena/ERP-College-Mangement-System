@@ -64,6 +64,8 @@ function Navbar() {
                                 <ul className="dropdown-menu dropdown-menu-end">
                                     <Link className="dropdown-item" to="/institute/history">History</Link>
 
+                                    <Link className="dropdown-item" to="/institute/events">Upcoming Events</Link>
+
                                     
                                     <a
                                         className="dropdown-item"
@@ -93,7 +95,7 @@ function Navbar() {
                                 <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Useful Link</a>
                                 <ul className="dropdown-menu dropdown-menu-end">
 
-                                    <Link className="dropdown-item" to="/dashboard">Dashboard</Link>
+                                    {/* <Link className="dropdown-item" to="/dashboard">Dashboard</Link> */}
                                     <Link className="dropdown-item" to="/academicCalendar">Calendar</Link>
                                 </ul>
                             </li>

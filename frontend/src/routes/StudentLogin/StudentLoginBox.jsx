@@ -53,9 +53,9 @@ export default function StudentLogin() {
         <div className="row w-100">
           {/* Left Intro Section */}
           <div className="col-md-8 d-none d-md-flex flex-column justify-content-center px-5">
-            <h1 className="fw-bold mb-3" style={{ color: "#0d1b2a" }}>
+            <h3 className="mb-3 text-start fw-bold custom-heading" style={{ color: "#094b92", fontSize: "46px" }}>
               Student Portal
-            </h1>
+            </h3>
             <p className="fs-3 text-muted" style={{ maxWidth: "700px" }}>
               Welcome to your all-in-one student portal — a single place to view
               grade reports, pay fees securely, and register for upcoming

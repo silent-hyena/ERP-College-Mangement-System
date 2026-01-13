@@ -1,136 +1,125 @@
-import "./DepartmentOverview.css"   
+// import e from "express";
+import "./DepartmentOverview.css"
+
+import { useState } from "react";
 function Departments() {
+
+    const departments = [
+        {
+            id: "cse",
+            img_src: "computer-lab.jpg",
+            department: "Computer Science & Engineering",
+            description: `The CSE Department equips students with the skills needed to thrive in the evolving tech industry.
+    Through hands-on learning in software development, artificial intelligence, data science, and system design,
+    the department offers state-of-the-art laboratories, industry mentorship, and project-driven coursework.
+    Graduates are well prepared for impactful careers in global technology companies, startups, and research organizations.`
+        },
+        {
+            id: "ece",
+            img_src: "chip.jpg",
+            department: "Electronics & Communication Engineering",
+            description: `The ECE Department builds strong foundations in semiconductor technology, communication systems,
+    embedded systems, and signal processing. With advanced laboratories, research-driven learning, and industry exposure,
+    students gain expertise in VLSI, IoT, telecommunications, and next-generation electronics, enabling them to innovate
+    in fast-growing technology domains.`
+        },
+        {
+            id: "me",
+            img_src: "mechanical-parts.jpg",
+            department: "Mechanical Engineering",
+            description: `The Mechanical Engineering Department focuses on design, manufacturing, thermal sciences,
+    robotics, and automation. Through modern fabrication labs, simulation tools, and industry-aligned projects,
+    students develop the ability to solve complex engineering problems and build successful careers in manufacturing,
+    automotive, robotics, and industrial engineering sectors.`
+        },
+        {
+            id: "ce",
+            img_src: "civil-image.jpg",
+            department: "Civil Engineering",
+            description: `The Civil Engineering Department prepares students to design, construct, and maintain sustainable
+    infrastructure. With strong training in structural engineering, transportation systems, geotechnical engineering,
+    and environmental engineering, students are equipped to contribute effectively to urban development,
+    construction management, and public sector projects.`
+        },
+        {
+            id: "ee",
+            img_src: "electricity-pylons.jpg",
+            department: "Electrical Engineering",
+            description: `The Electrical Engineering Department emphasizes power systems, electrical machines,
+    control systems, and renewable energy technologies. Students gain hands-on experience through modern power labs,
+    industry projects, and research initiatives, preparing them for careers in power generation, smart grids,
+    automation, and electrical infrastructure development.`
+        },
+        {
+            id: "aero",
+            img_src: "jet-engine.jpeg",
+            department: "Aerospace Engineering",
+            description: `The Aerospace Engineering Department provides in-depth knowledge of aerodynamics, propulsion,
+    aircraft structures, avionics, and space systems. With simulation-based learning, experimental labs,
+    and research exposure, students are trained to contribute to advanced aerospace technologies and pursue
+    careers in aviation, defense, and space exploration organizations.`
+        }
+    ];
+
+
+    const [expand, setExpand] = useState(false);
+    const visibleDepartments = expand ? departments : departments.slice(0, 3);
+
     return (
-        <> 
-            <h2 className="heading">Know Your Department</h2>
-            <hr></hr>
-            <div className="card mb-3 content-box" style={{ maxWidth: "100%"}}>
-                <div className="row g-0">
-                    <div className="col-md-4">
-                        <img
-                            src="computer-lab.jpg"
-                            className="img-fluid rounded-start"
-                            alt="department image"
-                        />
-                    </div>
-                    <div className="col-md-8">
-                        <div className="card-body">
-                            <h5 className="card-title">Computer Science & Engineering (CSE)</h5>
-                            <p className="card-text">
+        <>
+            <div className="ps-2 pt-5 pe-2 w-100">
 
-                                The CSE Department equips students with the skills needed to thrive in the evolving tech industry.
-                                Through hands-on learning in software development, AI, data science, and system design, the college
-                                provides state-of-the-art labs, industry mentorship, and project-driven coursework that prepares
-                                students for impactful careers in global technology companies.
-                            </p>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <h2 className="heading mt-4 custom-heading">Know Your Department</h2>
+                <hr></hr>
 
-            <div className="card mb-3" style={{ maxWidth: "100%",maxHeight: "250px", overflow: "hidden"  }}>
-                <div className="row g-0">
 
-                    <div className="col-md-8">
-                        <div className="card-body">
-                            <h5 className="card-title">Electronics & Communication Engineering (ECE)</h5>
-                            <p className="card-text">
+                {visibleDepartments.map((e, i) => {
 
-                                The ECE Department helps students build strong expertise in semiconductor technology, communication networks,
-                                and embedded systems. With advanced laboratories, internships, and research opportunities, the college enables
-                                learners to innovate in telecommunications, VLSI, IoT, and next-gen electronics,
-                                giving them a strong foundation for professional growth.
-                            </p>
+                    const imageOrder = i % 2 === 0 ? "order-md-1" : "order-md-2";
+                    const contentOrder = i % 2 === 0 ? "order-md-2" : "order-md-1";
+
+                   return <div key={i} className=" card mb-3 content-box" style={{ maxWidth: "100%", maxHeight: "250px", overflow: "hidden" }}>
+                        <div className="row g-0">
+                            <div className={`col-md-4 ${imageOrder}`} style={{ maxHeight: "250px", overflow: "hidden" }}>
+                                <img
+                                    src={e.img_src}
+                                    className="img-fluid rounded-start"
+                                    alt="department image"
+                                />
+                            </div>
+
+                            <div className={`col-md-8 ${contentOrder}`}>
+
+                                <div className="card-body">
+                                    <h5 className="card-title">{e.department}</h5>
+                                    <p className="card-text">
+
+                                        {e.description}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
 
                         </div>
                     </div>
-                    <div className="col-md-4">
-                        <img
-                            src="chip.jpg"
-                            className="img-fluid rounded-start"
-                            alt="department image"
-                        />
-                    </div>
+                })}
+                
+                <div className="w-100 text-center mt-2 mb-4">
+                    <button
+                        className="btn btn btn-outline-primary "
+                        onClick={() => setExpand(!expand)}
+                    >
+                        {expand ? "Show Less" : "Explore More Departments"}
+                    </button>
                 </div>
+                <hr></hr>
+
             </div>
-
-            <div className="card mb-3" style={{ maxWidth: "100%" ,maxHeight: "250px", overflow: "hidden" }}>
-                <div className="row g-0">
-                    <div className="col-md-4" style= {{maxHeight: "250px", overflow: "hidden"}}>
-                        <img
-                            src="mechanical-parts.jpg"
-                            className="img-fluid rounded-start"
-                            alt="department image"
-                        />
-                    </div>
-                    <div className="col-md-8">
-                        <div className="card-body">
-                            <h5 className="card-title">   Mechanical Engineering</h5>
-                            <p className="card-text">
-                                The Mechanical Engineering Department empowers students to explore design, manufacturing,
-                                thermal sciences, and automation. By integrating real-world projects,
-                                modern fabrication labs, and industry partnerships, the college trains students
-                                to solve complex engineering challenges and develop successful careers in manufacturing,
-                                automotive, robotics, and industrial engineering.
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="card mb-3" style={{ maxWidth: "100%" ,maxHeight: "250px", overflow: "hidden" }}>
-                <div className="row g-0">
-
-                    <div className="col-md-8">
-                        <div className="card-body">
-                            <h5 className="card-title">Aerospace Engineering</h5>
-                            <p className="card-text">
-                                The Aerospace Engineering Department provides students with deep exposure to aerodynamics, propulsion, aircraft structures, and space systems.
-                                Through simulation labs, research-driven learning, and interaction with industry experts,
-                                the college prepares students to contribute to advanced aerospace
-                                technologies and pursue exciting careers in aviation and space exploration.
-                            </p>
-
-                        </div>
-                    </div>
-                    <div className="col-md-4" style= {{maxHeight: "250px", overflow: "hidden"}}>
-                        <img
-                            src="jet-engine.jpeg"
-                            className="img-fluid rounded-start"
-                            alt="department image"
-                        />
-                    </div>
-                </div>
-            </div>
-
-            <div className="card mb-3" style={{ maxWidth: "100%" ,maxHeight: "250px", overflow: "hidden" }}>
-                <div className="row g-0">
-                    <div className="col-md-4" style= {{maxHeight: "250px", overflow: "hidden"}}>
-                        <img
-                            src="civil-image.jpg"
-                            className="img-fluid rounded-start"
-                            alt="department image"
-                        />
-                    </div>
-                    <div className="col-md-8">
-                        <div className="card-body">
-                            <h5 className="card-title">Civil Engineering</h5>
-                            <p className="card-text">
-                                The Civil Engineering Department prepares students to design and build sustainable infrastructure for growing communities.
-                                With training in structural engineering, transportation systems, geotechnics, and environmental engineering, the college equips future
-                                civil engineers with the technical and practical skills required to
-                                excel in urban development, construction management, and public sector engineering roles.
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr></hr>
-        </>
-    );
+        </>);
 }
+
 
 export default Departments;

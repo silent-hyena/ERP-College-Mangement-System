@@ -16,6 +16,7 @@ import AcademicCalendar from './routes/AcademicCalendar/AcademicCalendar.jsx';
 import StudentPortal from './routes/StudentPortal/StudentPortal.jsx';
 // import AdminPage from './routes/AdminPage/AdminPage.jsx';
 import DatbaseTables from './routes/AdminPage/DatabaseCards.jsx';
+import EventBox from './routes/EventPage/DisplayEvents.jsx';
 
 function usePageTracking() {
   const location = useLocation();
@@ -55,6 +56,7 @@ function App() {
               <Route path="/staffadminpage" element={<AdminPage />} />
               <Route path="/dashboard" element={<Home />} />
               <Route path="/academicCalendar" element={<AcademicCalendar />} />
+              <Route path="/institute/events" element={<EventBox />} />
             </Routes>
           </div>
 

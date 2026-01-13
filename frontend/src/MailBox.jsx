@@ -6,7 +6,7 @@ import TopProgressBar from "./components/ProgessBar/ProgressBar";
 export default function EmailForm() {
   const [alertflag, setAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
-  const [loadingState, setLoadingState]  = useState(false)
+  const [loadingState, setLoadingState] = useState(false)
 
   const {
     register,
@@ -15,7 +15,7 @@ export default function EmailForm() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    
+
     setLoadingState(true);
     const recipients = data.recipients
       .split(",")
@@ -23,13 +23,13 @@ export default function EmailForm() {
       .filter((email) => email.length > 0);
 
     const payload = {
-      
+
       emailSub: data.subject,
       emailBody: data.body,
       recipients,
     };
 
-    try {                      
+    try {
       const res = await fetch("/emailservice/sendmail", {
         method: "POST",
         credentials: "include",
@@ -49,7 +49,7 @@ export default function EmailForm() {
   };
 
   return (
-    <><TopProgressBar loading={loadingState}/>
+    <><TopProgressBar loading={loadingState} />
       {alertflag && (
         <AutoDismissAlert
           message={alertMessage}
@@ -57,14 +57,16 @@ export default function EmailForm() {
         />
       )}
 
-      {/* Make form occupy full width */}
-      <div className="p-4" style={{ width: "100%", boxSizing: "border-box"  }}>
+
+      <div className="p-4" style={{ width: "100%", boxSizing: "border-box" }}>
+
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="p-3 shadow-sm rounded-4 border border-light w-100"
-          style={{ maxWidth: "800px", margin: "0 auto" , backgroundColor: "rgba(250, 250, 250, 1)"}}
+          style={{ maxWidth: "800px", margin: "0 auto", backgroundColor: "rgb(255, 255, 255)" }}
         >
-          <h3 className="text-center mb-3 pt-0 mt-0 fw-bold" style={{color: "#1565C0"}}>Compose Email</h3>
+          <h3 className="text-center   mb-3 pt-0 mt-0 fw-bold" style={{ color: "#120e0e" }}>Compose Email</h3>
 
 
 
@@ -74,9 +76,8 @@ export default function EmailForm() {
             <input
               type="text"
               {...register("subject", { required: true })}
-              className={`form-control form-control-lg ${
-                errors.subject ? "is-invalid" : ""
-              }`}
+              className={`form-control form-control-lg ${errors.subject ? "is-invalid" : ""
+                }`}
               placeholder="Enter email subject"
             />
             {errors.subject && (
@@ -89,9 +90,8 @@ export default function EmailForm() {
             <label className="form-label fw-semibold">Email Body</label>
             <textarea
               {...register("body", { required: true })}
-              className={`form-control min-h-75 form-control-lg ${
-                errors.body ? "is-invalid" : ""
-              }`}
+              className={`form-control min-h-75 form-control-lg ${errors.body ? "is-invalid" : ""
+                }`}
               rows="6"
               placeholder="Enter email content"
             />
@@ -106,9 +106,8 @@ export default function EmailForm() {
             <input
               type="text"
               {...register("recipients", { required: true })}
-              className={`form-control form-control-lg ${
-                errors.recipients ? "is-invalid" : ""
-              }`}
+              className={`form-control form-control-lg ${errors.recipients ? "is-invalid" : ""
+                }`}
               placeholder="example1@gmail.com, example2@gmail.com"
             />
             {errors.recipients && (
@@ -117,13 +116,14 @@ export default function EmailForm() {
               </div>
             )}
           </div>
-
-          <button
-            type="submit"
-            className="btn btn-primary btn-lg w-100 fw-semibold shadow-sm"
-          >
-            Send Email
-          </button>
+          <div className="d-flex justify-content-end">
+            <button
+              type="submit"
+              className="btn btn-primary btn-lg   fw-semibold shadow-sm"
+            >
+              Send Email
+            </button>
+          </div>
         </form>
       </div>
     </>

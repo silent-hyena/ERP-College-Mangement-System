@@ -2,11 +2,17 @@ import express from "express"
 // import jwt from "jsonwebtoken"
 import sql from "../db.js";
 import verifyLogin from "../middleware/authenticate.js";
+import {getEvents,createEvent} from "../controller/collegeEvents.js"
+
 const router = express.Router()
+// router.use(verifyLogin)
 
-router.use(verifyLogin)
+router.post("/addevent",verifyLogin,createEvent)
+router.get("/getevent",getEvents);
 
-router.get("/showtables", async (req, res) => {
+
+
+router.get("/showtables",verifyLogin, async (req, res) => {
     try {
         const tables = await sql`
             SELECT 
@@ -26,7 +32,7 @@ router.get("/showtables", async (req, res) => {
 })
 
 
-router.get("/records", async (req, res) => {
+router.get("/records",verifyLogin, async (req, res) => {
   try {
     const { table } = req.query;
 
@@ -34,12 +40,12 @@ router.get("/records", async (req, res) => {
       return res.status(400).json({ message: "Missing 'table' query parameter" });
     }
 
-    // ✅ Basic validation: allow only alphanumeric + underscore table names
+    // Basic validation: allow only alphanumeric + underscore table names
     if (!/^[a-zA-Z0-9_]+$/.test(table)) {
       return res.status(400).json({ message: "Invalid table name" });
     }
 
-    // ⚠️ Tagged template literal prevents SQL injection
+    // Tagged template literal prevents SQL injection
     const content = await sql.unsafe(`SELECT * FROM ${table}`);
 
     res.json(content);
