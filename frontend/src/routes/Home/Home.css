@@ -14,9 +14,9 @@ background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(73, 73, 186, 1) 0%
 }
 
 .college-title h1 {
-  font-size: 2.3rem;
-  font-weight: 1000;
-  color: #1d1041; /* primary blue */
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2c0693; /* primary blue */
   margin-top: 10px;
 }
 

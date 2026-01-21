@@ -8,8 +8,8 @@ function Footer() {
                 <div className="row">
 
                     {/* Address*/}
-                    <div className="col-md-4 mb-2">
-                        <h5 className="fw-bold p-2">Address</h5>
+                    <div className="col-md-4 mb-2 fw-lighter d-flex flex-column gap-2">
+                        <h5 className="fw-bold pb-2">Address</h5>
                         <p className="m-0">Punjab Engineering College.</p>
                         <p className="m-0">Sector-12</p>
                         <p className="m-0">Chandigarh(160012)</p>
@@ -18,8 +18,8 @@ function Footer() {
 
 
                     {/* Contact */}
-                    <div className="col-md-4 mb-2">
-                        <h5 className="fw-bold p-2">Contact</h5>
+                    <div className="col-md-4 mb-2 fw-lighter d-flex flex-column gap-2">
+                        <h5 className="fw-bold pb-2">Contact</h5>
                         <p className="m-0">Email: info@mycollege.edu</p>
                         <p className="m-0">Phone1: +91 9876543210</p>
                         <p className="m-0">Phone2: +91 8823232982</p>
@@ -27,8 +27,8 @@ function Footer() {
                     </div>
 
                     {/* Quick Links */}
-                    <div className="col-md-4 mb-2">
-                        <h5 className="fw-bold p-2">Quick Links</h5>
+                    <div className="col-md-4 mb-2 fw-lighter d-flex flex-column gap-2">
+                        <h5 className="fw-bold pb-2">Quick Links</h5>
                         <ul className="nav p-0  flex-column">
                             <li className="nav-item p-0 ">
                                 <Link className="nav-link p-0 " to="/feeStructure">

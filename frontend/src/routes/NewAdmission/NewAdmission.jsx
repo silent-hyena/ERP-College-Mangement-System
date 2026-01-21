@@ -33,6 +33,9 @@ function NewAdmission() {
         setShowPayment(false);
     }
 
+
+    
+
     return (
         <>
             <Navbar />

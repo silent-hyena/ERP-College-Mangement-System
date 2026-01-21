@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  erp-app:
+    build: .
+    container_name: erp_app
+    ports:
+      - "5000:5000"
+
+    # YAML handles env injection
+    env_file:
+      - backend/.env
+
+    restart: unless-stopped
