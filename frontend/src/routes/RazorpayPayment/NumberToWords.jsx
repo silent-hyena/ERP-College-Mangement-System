@@ -32,24 +32,28 @@ function solveThree(s, mp) {
   return res;
 }
 
+function ConvertDecimal(n, mp) {
+  if (n === 0) return "";
+  if (n <= 20) return mp[n];
+  const tens = Math.floor(n / 10) * 10;
+  const ones = n % 10;
+  return ones ? `${mp[tens]} ${mp[ones]}` : mp[tens];
+}
+
 export default function numberToWords(num) {
   if (!num || num.length > 12) return "";
+  if (!/^\d+(\.\d+)?$/.test(num)) return "";
 
-  for (let i = 0; i < num.length; i++) {
-    if (num[i] < '0' || num[i] > '9') return "";
-  }
-
-  if (num === '0') return "Zero";
+  let [intPart, decPart = ""] = num.split(".");
+  decPart = decPart.slice(0, 2);
 
   const mp = {
     0: "",
     1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five",
     6: "Six", 7: "Seven", 8: "Eight", 9: "Nine",
-
     10: "Ten", 11: "Eleven", 12: "Twelve", 13: "Thirteen",
     14: "Fourteen", 15: "Fifteen", 16: "Sixteen",
     17: "Seventeen", 18: "Eighteen", 19: "Nineteen",
-
     20: "Twenty", 30: "Thirty", 40: "Forty",
     50: "Fifty", 60: "Sixty", 70: "Seventy",
     80: "Eighty", 90: "Ninety"
@@ -62,30 +66,34 @@ export default function numberToWords(num) {
     4: "Billion"
   };
 
-  const x = num.toString();
+  if (intPart === "0") return "Zero Rupees Only";
 
-  if (x.length <= 3) {
-    return solveThree(x, mp).trim();
+  let decVal = "";
+  if (decPart.length > 0) {
+    decVal = ConvertDecimal(Number(decPart), mp);
   }
 
-  let pos = 1;
-  let i = x.length - 1;
-  let res = "";
+  const x = intPart.toString();
+  let pos = 1, i = x.length - 1, res = "";
 
   while (i >= 2) {
-    const rpart = x.substring(i - 2, i + 1);
-    const op = solveThree(rpart, mp);
-
-    if (op.length > 0) {
-      res = `${op} ${mppos[pos]} ${res}`;
-    }
-    pos++;
-    i -= 3;
+    const op = solveThree(x.substring(i - 2, i + 1), mp);
+    if (op) res = `${op} ${mppos[pos]} ${res}`;
+    pos++; i -= 3;
   }
 
   if (i >= 0) {
     res = `${solveThree(x.substring(0, i + 1), mp)} ${mppos[pos]} ${res}`;
   }
 
-  return res.trim();
+  res = res.trim();
+  res += intPart === "1" ? " Rupee" : " Rupees";
+
+  if (decVal.length > 0) {
+    res += ` and ${decVal} Paise`;
+  } else {
+    res += " Only";
+  }
+
+  return res;
 }
