@@ -90,7 +90,7 @@ export default function numberToWords(num) {
   res += intPart === "1" ? " Rupee" : " Rupees";
 
   if (decVal.length > 0) {
-    res += ` and ${decVal} Paise`;
+    res += ` and ${decVal} Paise Only`;
   } else {
     res += " Only";
   }

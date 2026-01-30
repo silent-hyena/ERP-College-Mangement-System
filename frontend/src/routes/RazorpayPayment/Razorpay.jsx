@@ -17,7 +17,7 @@ export default function RazorpayPayment({ defaultStudent }) {
     else if (Number(number) >= 500000) {
       setShowNumber("Amount Have to be less than 500000");
     } else {
-      setShowNumber(`₹ ${numberToWords(number)} Only`);
+      setShowNumber(`₹ ${numberToWords(number)}`);
     }
   }
 
