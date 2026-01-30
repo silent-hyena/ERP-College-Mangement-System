@@ -2,14 +2,31 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import AutoDismissAlert from "../../AutoDismissedAlert"; // your alert component
+import numberToWords from "./NumberToWords";
 import "./razorpay.css";
 
 export default function RazorpayPayment({ defaultStudent }) {
   const [alertMessage, setAlertMessage] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
+  const [showNumber, setShowNumber] = useState("");
 
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    defaultValues: defaultStudent || { name: "", amount: "" }
+  function handleNumberInput(number) {
+    if(number == ""){
+      setShowNumber("")
+    }
+    else if (Number(number) >= 500000) {
+      setShowNumber("Amount Have to be less than 500000");
+    } else {
+      setShowNumber(`₹ ${numberToWords(number)} Only`);
+    }
+  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: defaultStudent || { name: "", amount: "" },
   });
 
   // Load Razorpay SDK
@@ -115,12 +132,15 @@ export default function RazorpayPayment({ defaultStudent }) {
   };
 
   return (
-    <div className="payment-page" >
+    <div className="payment-page">
       <div className="payment-card">
         <h2 className="payment-title">Make Payment</h2>
 
         {showAlert && (
-          <AutoDismissAlert message={alertMessage} onClose={() => setShowAlert(false)} />
+          <AutoDismissAlert
+            message={alertMessage}
+            onClose={() => setShowAlert(false)}
+          />
         )}
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -132,7 +152,9 @@ export default function RazorpayPayment({ defaultStudent }) {
               // placeholder="Enter your name"
               {...register("name", { required: "Name is required" })}
             />
-            {errors.name && <div className="invalid-feedback">{errors.name.message}</div>}
+            {errors.name && (
+              <div className="invalid-feedback">{errors.name.message}</div>
+            )}
           </div>
 
           <div className="mb-3">
@@ -141,9 +163,34 @@ export default function RazorpayPayment({ defaultStudent }) {
               type="number"
               className={`form-control ${errors.amount ? "is-invalid" : ""}`}
               // placeholder="Enter amount"
-              {...register("amount", { required: "Amount is required", min: 1 })}
+              {...register("amount", {
+                required: "Amount is required",
+                min: 1,
+                onChange: (e) => handleNumberInput(e.target.value),
+              })}
             />
-            {errors.amount && <div className="invalid-feedback">{errors.amount.message}</div>}
+            {errors.amount && (
+              <div className="invalid-feedback">{errors.amount.message}</div>
+            )}
+            {handleNumberInput}
+            {/* {showNumber} */}
+            { (
+              <div className="m-2">
+                <span
+                  className="fst-italic fw-semibold"
+                  style={{
+                    color: showNumber.includes("less than")
+                      ? "#dc3545" 
+                      : "#737579", 
+                    fontSize: "0.95rem",
+                    letterSpacing: "0.3px",
+                  }}
+                >
+                  {showNumber}
+                </span>
+              </div>
+            )}
+            
           </div>
 
           <button type="submit" className="btn w-100 payment-btn">
