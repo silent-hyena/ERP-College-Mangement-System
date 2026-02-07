@@ -30,7 +30,7 @@ const CourseTable = ({ data }) => {
       gradePoint += Number(report[i].credits)*(gradeMap[report[i].grade]);
       totalCredits += Number(report[i].credits);
     };
-  console.log(totalCredits);
+  
   return  (gradePoint/totalCredits).toFixed(2);
    
     

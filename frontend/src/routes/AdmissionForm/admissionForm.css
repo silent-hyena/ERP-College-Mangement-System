@@ -1,6 +1,6 @@
 /* ==== ADMISSION FORM BASE ==== */
 .admission-form-container {
-  max-width: 900px;
+  /* max-width: 900px; */
   justify-content: center;
   margin: auto;
   /* background-color: #f9fafb;  */
@@ -11,6 +11,8 @@
 }
 .admission-form-card {
   background-color: #ffffff;
+  min-height: 500px;
+  margin-top: 0px;
 }
 /* .col-form-label {
   color: gray !important;
@@ -109,4 +111,88 @@
   .admission-form-container .btn-primary {
     width: 100%;
   }
+}
+
+.stepper-container {
+  margin-bottom: 5px;
+  margin-top: 25px;
+  
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stepper-item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.stepper-visual {
+  display: flex;
+  align-items: center;
+}
+
+.stepper-visual .line {
+  flex: 1;
+  height: 2px;
+  background-color: #e5e7eb;
+}
+
+.stepper-visual .circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.stepper-item:first-child .line.left {
+  visibility: hidden;
+}
+
+.stepper-item:last-child .line.right {
+  visibility: hidden;
+}
+
+/* ACTIVE STEP */
+.stepper-item.active {
+  color: #1f2937;
+}
+
+.stepper-item.active .circle {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+/* COMPLETED STEP */
+.stepper-item.completed {
+  color: #065f46;
+}
+
+.stepper-item.completed .circle {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: white;
+}
+
+.stepper-item.completed .line {
+  background-color: #10b981;
+}
+
+.stepper-label {
+  margin-top: 8px;
+  font-weight: 500;
 }

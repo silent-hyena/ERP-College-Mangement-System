@@ -114,7 +114,7 @@ export default function AddEvent() {
           </div>
 
           <div className="d-flex justify-content-end">
-            <button type="submit" className="btn btn-primary btn-lg fw-semibold">
+            <button type="submit" className="btn btn-primary btn-lg fw-semibold px-5 rounded-pill">
               Create Event
             </button>
           </div>

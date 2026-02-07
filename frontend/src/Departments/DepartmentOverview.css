@@ -1,14 +1,24 @@
-.card-body p  {
-    font-size: 22px ;
-    line-height: 1.8rem;
-    color: rgb(82, 79, 79);
-    
+.card-body {
+  padding: 2rem 2.2rem;
 }
-.heading {
-    margin-top: 15px;
-    margin-bottom: 0px;
-    color: #0d47a1;
-    /* margin-left: 35%; */
-    text-align: center;
-    font-weight: 650 !important;
+
+/* Heading */
+.card-heading {
+  font-size: 1.4rem;
+  font-weight: 650;
+  color: #0d47a1;
+  margin-bottom: 0.9rem;
+  letter-spacing: 0.3px;
 }
+
+.card-description {
+  font-size: 18px;                  
+  line-height: 1.85;               
+  color: #3b4046;                  
+  font-weight: 420;                
+  margin-bottom: 0;
+  max-width: 80ch;                  
+  text-align: left;
+}
+
+

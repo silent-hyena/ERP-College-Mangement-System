@@ -40,10 +40,34 @@ async function sendEmail(recipient, sub, messageBody) {
 }
 
 
+router.get("/showform",async(req,res)=>{
+  try{
+    
+    const dbRes = await sql`SELECT is_enabled
+                            FROM services
+                            WHERE service_name='New_Admission_Application'`
+   if(!dbRes || dbRes.length ==0 || dbRes[0].is_enabled == false){
+    res.status(200).json({status: false})
+   }
+   else{
+    res.status(200).json({status: dbRes[0].is_enabled});
+   }
+  }
+  catch(err){
+    res.status(500).json({message: err.message})
+  }
+})
 router.post("/formsubmit", async (req, res) => {
   
   try {
-
+    const dbCheck = await sql`SELECT is_enabled
+                              FROM services
+                              WHERE service_name='New_Admission_Application'`
+    
+    if(dbCheck[0].is_enabled == false){
+      return res.status(403).json({ message: "Admission applications are currently closed. Please try again later." });
+    }
+    
     const {
       applicationNumber,
       name,
@@ -112,7 +136,7 @@ router.post("/formsubmit", async (req, res) => {
     console.error(err.message);
     if (err.code === "23505") {
       // Unique constraint violation (email/application_number)
-      res.status(400).json({ message: "Application number or Email already registered." });
+      res.status(403).json({ message: "Application number or Email already registered." });
     } else {
       res.status(500).json({ message: "Server error. Please try again later." });
     }

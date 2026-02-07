@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/portallogin", async (req, res) => {
 
     const { email = "", password = "",role="" } = req.body;
-    // console.log(req.body);
+   
 
 
     try {
@@ -33,10 +33,7 @@ router.post("/portallogin", async (req, res) => {
         if (!match) {
             return res.json({ alert: "password is incorrect. please try again." });
         }
-        // console.log(user)
-        // if(user.role != role){
-        //      return res.json({ alert: "No record found for the current role." });
-        // }
+        
 
         // issue JWT token
         const token = jwt.sign(

@@ -9,7 +9,7 @@ import QuickAccess from "../../components/QuickAccess/QuickAcess.jsx";
 import './Home.css'
 import Departments from "../../Departments/DepartmentOverview.jsx";
 import Performance from "../../components/Performance/Performance.jsx";
-
+import StudentPortal from "../StudentPortal/StudentPortal.jsx"
 
 
 
@@ -55,7 +55,6 @@ function Home() {
       <Navbar />
 
       <Banner />
-      {/* <div className="container-fluid " style={{ minHeight: "2000px" }}></div> */}
       <QuickAccess />
       {events.length > 0 &&
         <div className="bg-white pt-4 pb-4">
@@ -109,7 +108,9 @@ function Home() {
       {/* other homepage content */}
       <  Performance />
       <Footer />
+      <StudentPortal/>
     </div>
   )
 }
 export default Home;
+

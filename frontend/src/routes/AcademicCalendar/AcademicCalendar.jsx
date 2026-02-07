@@ -1,6 +1,7 @@
 import React from "react";
 import "./AcademicCalendar.css";
 import Navbar from '../../components/Navbar/Navbar.jsx';
+import Footer from "../../components/Footer/AppFooter.jsx";
 
 const AcademicCalendar = () => {
   return (
@@ -98,6 +99,7 @@ const AcademicCalendar = () => {
         </table>
       </div>
     </div>
+    <Footer/>
 </>
 
   );

@@ -1,32 +1,34 @@
 import express from "express";
-
+import sql from "../db.js";
 import Razorpay from "razorpay";
 import path from "path";
 import fs from "fs";
 import { validateWebhookSignature } from "razorpay/dist/utils/razorpay-utils.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { insertPayment}  from "../controller/insertPaymentInfo.js";
+import verifyStudentLogin from "../middleware/authenticateStudent.js";
 
 dotenv.config();
 
 const route = express.Router();
 const SECRET = process.env.JWT_SECRET;
 
-// Example authentication middleware
-async function authenticate(req, res, next) {
-  try {
-    const token = req.cookies?.token;
-    if (!token) return res.json({ alert: "Authentication token is missing." });
+// authentication middleware
+// async function authenticate(req, res, next) {
+//   try {
+//     const token = req.cookies?.token;
+//     if (!token) return res.json({ alert: "Authentication token is missing." });
 
-    const payload = jwt.verify(token, SECRET);
-    // req.user = await userData.findOne({ _id: payload.userId });
-    req.user = { balance: 1000, mobile: "9999999999" }; // temporary for testing
-    next();
-  } catch (e) {
-    console.log(e.message);
-    return res.json({ alert: "Not authorized" });
-  }
-}
+//     const payload = jwt.verify(token, SECRET);
+//     // req.user = await userData.findOne({ _id: payload.userId });
+//     req.user = { balance: 1000, mobile: "9999999999" }; 
+//     next();
+//   } catch (e) {
+//     console.log(e.message);
+//     return res.json({ alert: "Not authorized" });
+//   }
+// }
 
 // Serve static files
 route.use(express.static(path.resolve()));
@@ -55,14 +57,18 @@ if (!fs.existsSync("orders.json")) writeData([]);
 
 // Create order route
 route.post("/create-order", async (req, res) => {
-    console.log("you are at http://localhost:3000/makepayment/create-order")
+    
   try {
-    const { amount, currency = "INR", receipt, notes } = req.body;
-
-    // if (req.user.balance < amount) {
-    //   return res.json({ alert: "Not sufficient balance" });
+    // check if payment feture is enables:
+    
+    // const response = await sql`SELECT is_enabled
+    //                           FROM services
+    //                           WHERE service_name='Fee_Payment_Window'`;
+    
+    // if(!response || response[0].is_enabled == false){
+    //   return res.status(403).json({alert:"Payment facility is currently unavailable"});
     // }
-
+    const { amount=0, currency = "INR", receipt="", notes="" } = req.body;
     const options = {
       amount: amount * 100,
       currency,
@@ -85,7 +91,7 @@ route.post("/create-order", async (req, res) => {
     res.json(order);
   } catch (err) {
     console.error(err);
-    res.status(500).send("Error creating order");
+    res.status(500).json({alert: "Error Creating Order"})
   }
 });
 
@@ -94,9 +100,45 @@ route.get("/payment-success", (req, res) => {
   res.sendFile(path.resolve("./view/userDashboard.html"));
 });
 
+
+
 // Verify payment
 route.post("/verify-payment",  async (req, res) => {
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
+  
+  const { razorpay_order_id="", razorpay_payment_id="", razorpay_signature="" } = req.body;
+  const secret = razorpay.key_secret;
+  const body = razorpay_order_id + "|" + razorpay_payment_id;
+
+  try {
+    
+    const isValidSignature = validateWebhookSignature(body, razorpay_signature, secret);
+
+    if (isValidSignature) {
+      const orders = readData();
+      const order = orders.find((o) => o.order_id === razorpay_order_id);
+
+      if (order) {
+        order.status = "paid";
+        order.payment_id = razorpay_payment_id;
+        // writeData(orders);
+
+       
+      }
+      
+      res.status(200).json({ status: "ok", order });
+    } else {
+      res.status(400).json({ status: "verification_failed" });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ status: "error", message: "Error verifying payment" });
+  }
+});
+
+// separte path to verify in case of student payment to insert record in db:
+route.post("/verify-payment-student",verifyStudentLogin,  async (req, res) => {
+  
+  const { razorpay_order_id="", razorpay_payment_id="", razorpay_signature="" } = req.body;
   const secret = razorpay.key_secret;
   const body = razorpay_order_id + "|" + razorpay_payment_id;
 
@@ -110,21 +152,23 @@ route.post("/verify-payment",  async (req, res) => {
       if (order) {
         order.status = "paid";
         order.payment_id = razorpay_payment_id;
-        writeData(orders);
-
-        // Save to database (example)
-        // const client = await userData.findOne({ mobile: req.user.mobile });
-        // client.balance -= order.amount / 100;
-        // client.transactions.unshift({ amount: order.amount / 100, type: "debit", to: order.payment_id });
-        // await client.save();
+        // writeData(orders);
       }
-
+      // if this request come from the student profile page use controller to get insert info int the database:
+      if(order){
+       
+        await insertPayment(req.user.sid, order.amount/100,"Online",order.order_id,"Success")
+      }
+      
+      
       res.status(200).json({ status: "ok", order });
     } else {
+      
+    
       res.status(400).json({ status: "verification_failed" });
     }
   } catch (err) {
-    console.error(err);
+    
     res.status(500).json({ status: "error", message: "Error verifying payment" });
   }
 });

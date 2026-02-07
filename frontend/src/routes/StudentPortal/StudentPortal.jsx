@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import {
   FaHome,
-
+  FaSignOutAlt,
+  FaUser,
   FaReceipt,
   FaMoneyCheckAlt,
   FaBookOpen,
   FaChartLine,
   FaFileInvoiceDollar,
   FaCommentAlt,
-
 } from "react-icons/fa";
 
 import Navbar from "../../components/Navbar/Navbar.jsx";
@@ -18,56 +19,27 @@ import RazorpayPayment from "../RazorpayPayment/Razorpay.jsx";
 import CourseTable from "./GradeReportTable.jsx";
 import TopProgressBar from "../../components/ProgessBar/ProgressBar.jsx";
 import downloadGradeReport from "./DownloadGradeReport.jsx";
-
-
+import ManageProfile from "./ManageProfile.jsx";
 
 const FeeStructure = () => <div>Fee Structure Details</div>;
 
-const CourseRegistration = () =>  <>
-  <div className="container my-4">
-    <div
-      className="alert alert-info text-center p-4 border border-info rounded"
-      role="alert"
-    >
-      <h5 className="mb-1 fw-semibold">Course registration is currently not available</h5>
-      <p className="mb-0 text-muted">
-        Please contact the IT information centre for more info.
-      </p>
+const CourseRegistration = () => (
+  <>
+    <div className="container my-4">
+      <div
+        className="alert alert-info text-center p-4 border border-info rounded"
+        role="alert"
+      >
+        <h5 className="mb-1 fw-semibold">
+          Course registration is currently not available
+        </h5>
+        <p className="mb-0 text-muted">
+          Please contact the IT information centre for more info.
+        </p>
+      </div>
     </div>
-  </div>
-</>;
-
-
-
-const FeeReceipt = () =>  <>
-  <div className="container my-4">
-    <div
-      className="alert alert-info text-center p-4 border border-info rounded"
-      role="alert"
-    >
-      <h5 className="mb-1 fw-semibold">Fee payment option is not available currently.</h5>
-      <p className="mb-0 text-muted">
-        Please contact the IT information centre for more info.
-      </p>
-    </div>
-  </div>
-</>;
-
-
-
-const Feedback = () => <>
-  <div className="container my-4">
-    <div
-      className="alert alert-info text-center p-4 border border-info rounded"
-      role="alert"
-    >
-      <h5 className="mb-1 fw-semibold">This Facility is Currently Not Available</h5>
-      <p className="mb-0 text-muted">
-        Please contact the IT information centre for more info.
-      </p>
-    </div>
-  </div>
-</>;
+  </>
+);
 
 function StudentPortal() {
   // State to track current content
@@ -75,14 +47,37 @@ function StudentPortal() {
   const [gradeData, setGradeData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState([]);
+  const [paymentData, setPaymentData] = useState([]);
 
+  const navigate = useNavigate();
 
+  const FeeReceipt = () => (
+    <>
+      
+      <div className="ms-2 me-2 p-5">
+      {paymentData.map((payment, index) => (
+        <table key={index} className="table table-bordered table-sm mb-4">
+          <tbody>
+            {Object.entries(payment).map(([key, value]) => (
+              
+              <tr key={key}>
+                <th className="bg-light text-capitalize w-50">
+                  {key.replace(/_/g, " ")}
+                </th>
+                <td>{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ))}
+      </div>
+     
+    </>
+  );
   const Home = () => (
-    <div
-      className="card shadow rounded bg-white p-4"
-    // style={{ maxWidth: "1000px" }}
-    >
-      <h4 className="mb-3">Profile Overview</h4>
+    <div className="card border-0 bg-white p-2 m-3">
+      <h4 className="mb-0">Profile Overview</h4>
+      <hr></hr>
       <table className="table table-bordered">
         <tbody>
           {Object.entries(profile).reduce((rows, entry, index, array) => {
@@ -90,11 +85,12 @@ function StudentPortal() {
               const next = array[index + 1];
               rows.push(
                 <tr key={index}>
-                  <th>{entry[0]}</th>
+                
+                  <th>{entry[0].replace(/_/g, " ")}</th>
                   <td>{String(entry[1])}</td>
                   {next ? (
                     <>
-                      <th>{next[0]}</th>
+                      <th>{next[0].replace(/_/g, " ")}</th>
                       <td>{String(next[1])}</td>
                     </>
                   ) : (
@@ -103,7 +99,7 @@ function StudentPortal() {
                       <td></td>
                     </>
                   )}
-                </tr>
+                </tr>,
               );
             }
             return rows;
@@ -113,19 +109,22 @@ function StudentPortal() {
     </div>
   );
 
+  const handleLogout = () => {
+    // delete JWT cookie
+    document.cookie = "jwt=; Max-Age=0; path=/";
+    // redirect to home / login
+    navigate("/");
+  };
 
   async function handleGradeBtn() {
-
     setLoading(true);
-    const response = await fetch("/student/gradereport",
-      {
-        method: "GET",
-        credentials: "include"
-      }
-    );
+    const response = await fetch("/student/gradereport", {
+      method: "GET",
+      credentials: "include",
+    });
     const data = await response.json();
     if (data.message) {
-      console.log(data.message)
+      
       setGradeData(data.message);
     }
     setLoading(false);
@@ -134,59 +133,134 @@ function StudentPortal() {
 
   const getProfile = async () => {
     try {
-      const response = await fetch("/student/studentprofile", {
-        method: "GET",
-        credentials: "include",
-      });
+      const response = await fetch(
+        "/student/studentprofile",
+        {
+          method: "GET",
+          credentials: "include",
+        },
+      );
       const data = await response.json();
 
       if (data.SID) {
         setProfile(data);
-
       } else {
         console.warn("Failed to fetch profile:", data);
       }
     } catch (error) {
       console.error("Error fetching profile:", error);
     }
-  }
+  };
 
   useEffect(() => {
     getProfile();
   }, []);
 
   async function handleGradeReprtDownload() {
-    downloadGradeReport(gradeData, "grade_report")
-
-
+    downloadGradeReport(gradeData, "grade_report");
   }
 
+  async function handleGetFreeReceipt() {
+    try {
+      setLoading(true);
+      const response = await fetch("/student/feereceipt", {
+        method: "GET",
+        credentials: "include",
+      });
+      const data = await response.json();
+      setLoading(false);
+      setActiveSection("feeReceipt");
+      setPaymentData(data.data);
+      
+    } catch (err) {
+      setLoading(false);
+      alert(err.message);
+    }
+  }
 
+  const Feedback = () => (
+    <>
+      <div className="container my-4">
+        <div
+          className="alert alert-info text-center p-4 border border-info rounded"
+          role="alert"
+        >
+          <h5 className="mb-1 fw-semibold">
+            This Facility is Currently Not Available
+          </h5>
+          <p className="mb-0 text-muted">
+            Please contact the IT information centre for more info.
+          </p>
+        </div>
+      </div>
+    </>
+  );
 
   // Function to render content based on activeSection
   const renderContent = () => {
     switch (activeSection) {
-      case "home": return <Home />;
-      case "feeStructure": return <FeeStructure />;
-      case "feePayment": return <RazorpayPayment />;
-      case "courseRegistration": return <CourseRegistration />;
-      case "gradeReport": return <>
-        <CourseTable data={gradeData.slice(1)} />
-        <button type="button" className="btn btn-primary" onClick={() => handleGradeReprtDownload()}>
-          Download Grade Report
-        </button>
-
-      </>;
-      case "feeReceipt": return <FeeReceipt />;
-      case "feedback": return <Feedback />;
-      default: return <Home />;
+      case "home":
+        return <Home />;
+      case "feeStructure":
+        return <FeeStructure />;
+      case "feePayment":
+        return <RazorpayPayment isFeePayment={true} />;
+      case "courseRegistration":
+        return <CourseRegistration />;
+      case "ManageProfile":
+        return <ManageProfile number={profile.Mobile} email={profile.Email} />
+      case "gradeReport":
+        return (
+          <>
+            {gradeData &&<>
+            <CourseTable data={gradeData.slice(1)} />
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => handleGradeReprtDownload()}
+            >
+              Download Grade Report
+            </button></>}
+          </>
+        );
+      case "feeReceipt":
+        return <FeeReceipt />;
+      case "feedback":
+        return <Feedback />;
+      default:
+        return <Home />;
     }
-  }
+  };
 
   return (
-    <><TopProgressBar loading={loading} />;
+    <>
+      <TopProgressBar loading={loading} />
       <Navbar />
+      {/* top bar for profile and logout option */}
+      <div
+        className=" d-flex align-items-center justify-content-between px-3"
+        style={{ height: "50px", backgroundColor: "#90CAF9" }}
+      >
+        <button
+          className="btn btn-outline-light btn-sm fw-semibold
+             d-flex align-items-center justify-content-between"
+          style={{ width: "85px" }}
+          onClick={() => setActiveSection("home")}
+        >
+          <FaUser />
+          <span>Profile</span>
+        </button>
 
+        <button
+          className="btn btn-outline-light btn-sm fw-semibold
+             d-flex align-items-center justify-content-between"
+          style={{ width: "90px" }}
+          onClick={handleLogout}
+        >
+          <FaSignOutAlt />
+          <span>Logout</span>
+        </button>
+      </div>
       <div className="d-flex">
         {/* SIDEBAR */}
 
@@ -194,12 +268,20 @@ function StudentPortal() {
           <div className="sidebar-text-style ps-4 bg-light d-flex">
             <nav
               className="vh-100 flex-column ps-2 pt-2 ps-2 pe-2"
-              style={{ width: "210px", position: "sticky", top: 0, height: "100vh", overflowY: "auto" }}
+              style={{
+                width: "210px",
+                position: "sticky",
+                top: 0,
+                height: "100vh",
+                overflowY: "auto",
+              }}
             >
-
-
-              <Link className="mt-3 sidebar2-btn d-flex align-items-center gap-2" to="/feeStructure">
-                <FaFileInvoiceDollar />Fee Structure
+              <Link
+                className="mt-3 sidebar2-btn d-flex align-items-center gap-2"
+                to="/feeStructure"
+              >
+                <FaFileInvoiceDollar />
+                Fee Structure
               </Link>
 
               <button
@@ -218,14 +300,18 @@ function StudentPortal() {
 
               <button
                 className="mt-3 sidebar-btn d-flex align-items-center gap-2"
-                onClick={() => { handleGradeBtn(), setActiveSection("gradeReport") }}
+                onClick={() => {
+                  (handleGradeBtn(), setActiveSection("gradeReport"));
+                }}
               >
                 <FaChartLine /> Grade Report
               </button>
 
               <button
                 className="mt-3 sidebar-btn d-flex align-items-center gap-2"
-                onClick={() => setActiveSection("feeReceipt")}
+                onClick={() => {
+                  handleGetFreeReceipt();
+                }}
               >
                 <FaReceipt /> Fee Receipt
               </button>
@@ -236,16 +322,17 @@ function StudentPortal() {
               >
                 <FaCommentAlt /> Feedback
               </button>
-
+              <button
+                className="mt-3 sidebar-btn d-flex align-items-center gap-2"
+                onClick={() => setActiveSection("ManageProfile")}
+              >
+                <FaUser /> Manage Profile
+              </button>
             </nav>
-
-
           </div>
         </div>
         {/* CONTENT AREA */}
-        <div className="container-fluid p-4">
-          {renderContent()}
-        </div>
+        <div className="container-fluid p-4 pe-1">{renderContent()}</div>
       </div>
       <Footer />
     </>

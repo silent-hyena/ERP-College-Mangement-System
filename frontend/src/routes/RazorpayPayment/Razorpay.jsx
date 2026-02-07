@@ -1,39 +1,51 @@
-// RazorpayPayment.jsx
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import AutoDismissAlert from "../../AutoDismissedAlert"; // your alert component
+import { useForm, Controller } from "react-hook-form";
+import AutoDismissAlert from "../../AutoDismissedAlert";
 import numberToWords from "./NumberToWords";
 import "./razorpay.css";
 
-export default function RazorpayPayment({ defaultStudent }) {
+export default function RazorpayPayment({ isFeePayment }) {
   const [alertMessage, setAlertMessage] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
-  const [showNumber, setShowNumber] = useState("");
-
-  function handleNumberInput(number) {
-    if(number == ""){
-      setShowNumber("")
-    }
-    else if (Number(number) >= 500000) {
-      setShowNumber("Amount Have to be less than 500000");
-    } else {
-      setShowNumber(`₹ ${numberToWords(number)}`);
-    }
-  }
+  const [showNumberAsWord, setShowNumberAsWord] = useState("");
 
   const {
     register,
     handleSubmit,
+    control,
+    // setValue,
     formState: { errors },
   } = useForm({
-    defaultValues: defaultStudent || { name: "", amount: "" },
+    defaultValues: { name: "", amount: "" },
   });
 
-  // Load Razorpay SDK
-  const loadRazorpayScript = () => {
-    return new Promise((resolve) => {
-      if (document.getElementById("razorpay-sdk")) return resolve(true);
+  
 
+  const formatINR = (value) => {
+    if (!value) return "";
+
+    const [intPart, decPart] = value.split(".");
+    const formattedInt = intPart ? Number(intPart).toLocaleString("en-IN") : "";
+
+    return decPart !== undefined ? `${formattedInt}.${decPart}` : formattedInt;
+  };
+
+  function handleNumberInput(number) {
+    if (!number) {
+      setShowNumberAsWord("");
+      return;
+    }
+
+    if (Number(number) >= 500000) {
+      setShowNumberAsWord("Amount Have to be less than 500000");
+    } else {
+      setShowNumberAsWord(`₹ ${numberToWords(number)}`);
+    }
+  }
+
+  const loadRazorpayScript = () =>
+    new Promise((resolve) => {
+      if (document.getElementById("razorpay-sdk")) return resolve(true);
       const script = document.createElement("script");
       script.src = "https://checkout.razorpay.com/v1/checkout.js";
       script.id = "razorpay-sdk";
@@ -41,24 +53,28 @@ export default function RazorpayPayment({ defaultStudent }) {
       script.onerror = () => resolve(false);
       document.body.appendChild(script);
     });
-  };
 
-  // Open Razorpay checkout
   const openRazorpay = async (data) => {
     const res = await loadRazorpayScript();
     if (!res) {
-      setAlertMessage("Razorpay SDK failed to load. Check your internet.");
+      setAlertMessage("Razorpay SDK failed to load.");
       setShowAlert(true);
       return;
     }
 
     try {
-      const response = await fetch("/makepayment/create-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: Number(data.amount), currency: "INR" }),
-        credentials: "include",
-      });
+      const response = await fetch(
+        "/makepayment/create-order",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: Number(data.amount),
+            currency: "INR",
+          }),
+          credentials: "include",
+        },
+      );
 
       const order = await response.json();
       if (order.alert) {
@@ -67,61 +83,61 @@ export default function RazorpayPayment({ defaultStudent }) {
         return;
       }
 
-      return new Promise((resolve) => {
-        const options = {
-          key: "rzp_test_zpN0zp46AZpzIA",
-          amount: order.amount,
-          currency: order.currency,
-          name: "Student Management System",
-          description: "Admission Payment",
-          order_id: order.id,
-          prefill: {
-            name: data.name,
-            email: data.email || "student@example.com",
-            contact: data.contact || "9999999999",
-          },
-          theme: { color: "#89CFF3" },
-          handler: async function (response) {
-            try {
-              const verifyRes = await fetch("/makepayment/verify-payment", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  razorpay_order_id: response.razorpay_order_id,
-                  razorpay_payment_id: response.razorpay_payment_id,
-                  razorpay_signature: response.razorpay_signature,
-                }),
-                credentials: "include",
-              });
-
-              const data = await verifyRes.json();
-              if (data.status === "ok") {
-                setAlertMessage("Payment successful!");
-              } else {
-                setAlertMessage("Payment verification failed.");
-              }
-            } catch (err) {
-              console.error("Verification error:", err);
-              setAlertMessage("Error verifying payment.");
-            } finally {
-              setShowAlert(true);
-              resolve();
+      const options = {
+        key: "rzp_test_zpN0zp46AZpzIA",
+        amount: order.amount,
+        currency: order.currency,
+        name: "Student Management System",
+        description: "Admission Payment",
+        order_id: order.id,
+        handler: async function (response) {
+          try {
+            let verifyRes = null;
+            if (isFeePayment) {
+              verifyRes = await fetch(
+                "/makepayment/verify-payment-student",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(response),
+                  credentials: "include",
+                },
+              );
+            } else {
+              verifyRes = await fetch(
+                "/makepayment/verify-payment",
+                {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(response),
+                  credentials: "include",
+                },
+              );
             }
-          },
-          modal: {
-            ondismiss: () => {
-              setAlertMessage("Payment cancelled by user.");
-              setShowAlert(true);
-              resolve();
-            },
-          },
-        };
 
-        const paymentObject = new window.Razorpay(options);
-        paymentObject.open();
-      });
-    } catch (err) {
-      console.error("Error creating order:", err);
+            const data = await verifyRes.json();
+            setAlertMessage(
+              data.status === "ok"
+                ? "Payment successful!"
+                : "Payment verification failed.",
+            );
+          } catch {
+            setAlertMessage("Error verifying payment.");
+          } finally {
+            setShowAlert(true);
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            setAlertMessage("Payment cancelled by user.");
+            setShowAlert(true);
+          },
+        },
+        theme: { color: "#89CFF3" },
+      };
+
+      new window.Razorpay(options).open();
+    } catch {
       setAlertMessage("Failed to initiate payment.");
       setShowAlert(true);
     }
@@ -144,12 +160,12 @@ export default function RazorpayPayment({ defaultStudent }) {
         )}
 
         <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Name */}
           <div className="mb-3">
             <label className="form-label">Name</label>
             <input
               type="text"
-              className={`form-control ${errors.name ? "is-invalid" : ""}`}
-              // placeholder="Enter your name"
+              className={`form-control ${errors.name ? "is-invalid" : ""} rounded-pill`}
               {...register("name", { required: "Name is required" })}
             />
             {errors.name && (
@@ -157,43 +173,57 @@ export default function RazorpayPayment({ defaultStudent }) {
             )}
           </div>
 
+          {/* Amount */}
           <div className="mb-3">
             <label className="form-label">Amount (INR)</label>
-            <input
-              type="number"
-              className={`form-control ${errors.amount ? "is-invalid" : ""}`}
-              // placeholder="Enter amount"
-              {...register("amount", {
-                required: "Amount is required",
-                min: 1,
-                onChange: (e) => handleNumberInput(e.target.value),
-              })}
+
+            <Controller
+              name="amount"
+              control={control}
+              rules={{ required: "Amount is required", min: 1 }}
+              render={({ field }) => (
+                <input
+                  type="text"
+                  className={`form-control ${
+                    errors.amount ? "is-invalid" : ""
+                  } rounded-pill`}
+                  value={formatINR(field.value)}
+                  
+                  onChange={(e) => {
+                    const raw = e.target.value.replace(/,/g, "");
+
+                    // allow digits + one decimal
+                    if (/^\d*\.?\d{0,2}$/.test(raw)) {
+                      field.onChange(raw);
+                      handleNumberInput(raw);
+                    }
+                  }}
+                />
+              )}
             />
+
             {errors.amount && (
               <div className="invalid-feedback">{errors.amount.message}</div>
             )}
-            {handleNumberInput}
-            {/* {showNumber} */}
-            { (
-              <div className="m-2">
-                <span
-                  className="fst-italic fw-semibold"
-                  style={{
-                    color: showNumber.includes("less than")
-                      ? "#dc3545" 
-                      : "#737579", 
-                    fontSize: "0.95rem",
-                    letterSpacing: "0.3px",
-                  }}
-                >
-                  {showNumber}
-                </span>
+
+            <div className="m-2 ">
+              <div
+                className="fst-italic"
+                style={{
+                  color: showNumberAsWord.includes("less than")
+                    ? "#dc3545"
+                    : "#5f5f5f",
+                  fontSize: "1.10rem",
+                  fontWeight: "400"
+                  
+                }}
+              >
+                {showNumberAsWord}
               </div>
-            )}
-            
+            </div>
           </div>
 
-          <button type="submit" className="btn w-100 payment-btn">
+          <button type="submit" className="btn w-100 payment-btn rounded-pill">
             Pay Now
           </button>
         </form>

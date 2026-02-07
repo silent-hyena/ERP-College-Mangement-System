@@ -78,7 +78,7 @@ export default function ApplicationFormCheck() {
                 )}
               </div>
 
-              <button type="submit" className="btn btn-primary w-50 d-block mx-auto">
+              <button type="submit" className="btn btn-primary w-50 d-block mx-auto rounded-pill">
                 Check Status
               </button>
             </form>

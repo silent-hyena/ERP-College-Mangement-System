@@ -107,7 +107,7 @@ export default function StudentLogin() {
 
                 
 
-                <button type="submit" className="btn btn-primary w-100">
+                <button type="submit" className="btn btn-primary rounded-pill w-100">
                   Login
                 </button>
               </form>

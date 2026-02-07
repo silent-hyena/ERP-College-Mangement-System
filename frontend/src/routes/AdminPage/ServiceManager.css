@@ -1,0 +1,42 @@
+.service-manager {
+  max-width: 540px;
+  margin-top: 20px;
+  padding: 20px;
+}
+
+/* Each service row */
+.service-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-row:hover {
+  background-color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Service name */
+.service-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2f3439;
+  text-transform: capitalize;
+}
+
+/* Bootstrap switch customization */
+.form-switch .form-check-input {
+  width: 2.8em;
+  height: 1.4em;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #73cfa3;
+  border-color: #73cfa3;
+}

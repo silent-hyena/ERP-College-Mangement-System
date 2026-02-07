@@ -29,44 +29,35 @@ function Footer() {
                     {/* Quick Links */}
                     <div className="col-md-4 mb-2 fw-lighter d-flex flex-column gap-2">
                         <h5 className="fw-bold pb-2">Quick Links</h5>
-                        <ul className="nav p-0  flex-column">
-                            <li className="nav-item p-0 ">
-                                <Link className="nav-link p-0 " to="/feeStructure">
+                        <ul className="nav p-0  flex-column gap-2">
+                            <li className="nav-item p-0  " >
+                                <Link className="nav-link p-0  d-inline-block" to="/feeStructure">
                                     Fee Structure
                                 </Link>
                             </li>
-                            <li className="nav-item p-0 ">
-                                <Link className="nav-link p-0 " to="/">
+                            <li className="nav-item p-0  " >
+                                <Link className="nav-link p-0  d-inline-block" to="/">
                                     Home
                                 </Link>
                             </li>
-                            <li className="nav-item p-0 ">
-                                <Link className="nav-link p-0 " to="/academicCalendar">
+                            <li className="nav-item p-0 " >
+                                <Link className="nav-link p-0  d-inline-block" to="/academicCalendar">
                                     Academic Calendar
                                 </Link>
                             </li>
-                            <li className="nav-item p-0">
-                                <Link className="nav-link p-0" to="/newAdmission">
+                            <li className="nav-item p-0" >
+                                <Link className="nav-link p-0  d-inline-block" to="/newAdmission">
                                     Admissions
                                 </Link>
                             </li>
                             
                         </ul>
                     </div>
-
-
-                    {/* Social */}
-                    {/* <div className="col-md-3 mb-4">
-              <h6 className="fw-bold">Follow Us</h6>
-              <a href="#" className="text-light me-3"><i className="bi bi-facebook"></i></a>
-              <a href="#" className="text-light me-3"><i className="bi bi-twitter"></i></a>
-              <a href="#" className="text-light me-3"><i className="bi bi-instagram"></i></a>
-              <a href="#" className="text-light"><i className="bi bi-linkedin"></i></a>
-            </div> */}
+    
                 </div>
 
                 {/* Copywrite bar */}
-                <hr className="border-light mt-5" />
+                <hr className="border-light mt-2" />
                 <div className="text-center">
                     <small>© 2025 Student Management System. All rights reserved.</small>
                 </div>

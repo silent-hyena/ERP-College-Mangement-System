@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Navbar from "../../components/Navbar/Navbar.jsx"
-import FormLogin from "../AdmissionForm/AdmissionForm.jsx"
+import AdmissionForm from "../AdmissionForm/AdmissionForm.jsx"
 import ApplicationFormCheck from "../ApplicationStatus/AdmissionStatus.jsx"
 import RazorpayPayment from "../RazorpayPayment/Razorpay.jsx"
 import Footer from "../../components/Footer/AppFooter";
@@ -53,7 +53,7 @@ function NewAdmission() {
                     
                     {showIntro && <AdmissionIntro onStart={handleFormBtn} />}
 
-                    {showAdmissionform && <FormLogin />}
+                    {showAdmissionform && <AdmissionForm />}
                     {showpayment && <RazorpayPayment />}
                     {showApplcationStatus && <ApplicationFormCheck />}
 

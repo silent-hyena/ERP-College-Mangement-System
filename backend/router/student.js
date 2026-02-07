@@ -59,12 +59,66 @@ router.post("/portallogin", async (req, res) => {
 });
 
 
-router.get("/studentprofile", verifyStudentLogin, async (req, res) => {
+router.post("/manageprofile/update", verifyStudentLogin, async (req, res) => {
+    try {
+      const { phoneNumber, email } = req.body;
+
+     
+      if (!phoneNumber && !email) {
+        return res
+          .status(400)
+          .json({ message: "No fields provided for update." });
+      }
+
+
+      if (phoneNumber) {
+        if (!/^\d{10}$/.test(phoneNumber)) {
+          return res
+            .status(400)
+            .json({ message: "Invalid phone number format." });
+        }
+      }
+
+      if (email) {
+        if (
+          !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+        ) {
+          return res
+            .status(400)
+            .json({ message: "Invalid email format." });
+        }
+      }
+
+
+      const updates = {};
+      if (phoneNumber) updates.contact_no = phoneNumber;
+      if (email) updates.personal_email = email;
+
+      await sql`
+        UPDATE student
+        SET ${sql(updates)}
+        WHERE sid = ${req.user.sid}
+      `;
+
+      res.status(200).json({
+        message: "Profile updated successfully.",
+        updatedFields: Object.keys(updates),
+      });
+    } catch (err) {
+      console.error("Profile update error:", err);
+      res.status(500).json({ message: "Internal server error." });
+    }
+  }
+);
+
+
+router.get("/studentprofile", verifyStudentLogin,  async (req, res) => {
 
     try {
         const response = await sql`
                 SELECT sid, first_name, last_name, dob, gender, contact_no,
-                personal_email, branch_id, uid, college_email, password_hash
+                personal_email,admission_date, branch_id, uid, college_email, password_hash,
+                father_name, mother_name
                 FROM student
                 WHERE college_email = ${req.user.college_email}`;
         const user = response[0];
@@ -81,10 +135,13 @@ router.get("/studentprofile", verifyStudentLogin, async (req, res) => {
 
             SID: user.sid,
             Name: `${user.first_name} ${user.last_name}`,
+            Father_Name: user.father_name,
+            Mother_Name: user.mother_name,
             DOB:  d.toISOString().split("T")[0],
             Gender: user.gender,
             Mobile: user.contact_no,
             Email: user.personal_email,
+            Batch: new Date(user.admission_date).getFullYear(),
             Branch: branchName,
         });
 
@@ -154,19 +211,42 @@ router.get("/gradereport", verifyStudentLogin, async (req, res) => {
     res.json({ message: finalReport })
 })
 
+const formatTransactions = (rows) =>
+  rows.map((t) => ({
+    Student_id: t.student_id,
+
+    Amount: `₹ ${Number(t.amount_paid).toLocaleString("en-IN")}`,
+
+    Transaction_Time: new Date(t.payment_date).toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }),
+
+    Order_Id: t.receipt_no,
+
+    Payment_Mode: t.payment_mode,
+    Transaction_Status: t.transaction_status,
+  }));
+
 router.get("/feereceipt", verifyStudentLogin, async (req, res) => {
-    //     SELECT 
-    //     PaymentID,
-    //     Amount,
-    //     PaymentDate,
-    //     Status,
-    //     PaymentMethod,
-    //     Semester,
-    //     Year
-    // FROM FeePayment
-    // WHERE SID = 'STUDENT_ID_HERE'
-    // ORDER BY PaymentDate ASC;
-    res.json({ message: "will get data after database is finalized." })
+    try{
+        const response = await sql`
+             SELECT student_id, amount_paid, payment_date,payment_mode,
+             receipt_no,transaction_status
+             FROM transactions
+             WHERE student_id=${req.user.sid}
+             ORDER BY payment_date DESC`
+
+        res.status(200).json({data:formatTransactions(response) })
+    }
+    catch(err){
+        res.status(500).json({alert: err.message})
+    }
 
 }
 )

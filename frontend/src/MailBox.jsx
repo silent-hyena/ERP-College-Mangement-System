@@ -119,7 +119,7 @@ export default function EmailForm() {
           <div className="d-flex justify-content-end">
             <button
               type="submit"
-              className="btn btn-primary btn-lg   fw-semibold shadow-sm"
+              className="btn btn-primary btn-lg   fw-semibold shadow-sm rounded-pill px-5"
             >
               Send Email
             </button>

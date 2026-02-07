@@ -5,6 +5,7 @@ import { Routes, Route,useLocation  } from 'react-router-dom'
 import { useEffect } from "react";
 import NewAdmission from './routes/NewAdmission/NewAdmission.jsx'
 import Home from './routes/Home/Home.jsx'
+
 import AdminPage from './routes/AdminPage/AdminPage.jsx';
 import StudentLogin from './routes/StudentLogin/StudentLoginBox.jsx';
 import StaffLogin from './routes/AdminLogin/StaffLoginBox.jsx';

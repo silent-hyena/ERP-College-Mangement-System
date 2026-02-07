@@ -17,6 +17,7 @@ const DisplayTable = ({ data }) => {
       style={{
 
         maxHeight: "1200px",
+        minHeight: "375px",
         overflowY: "auto",
         overflowX: "auto",
       }}
@@ -34,7 +35,7 @@ const DisplayTable = ({ data }) => {
               <th
                 key={col}
                 style={{
-                  width: col.toLowerCase() === "id" ? "120px" : "250px",
+                  width: col.toLowerCase() === "id" ? "120px" : "200px",
                   whiteSpace: "nowrap",
                 }}
                 className="text-capitalize"

@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import "./FeeStructure.css";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import Footer from "../../components/Footer/AppFooter.jsx";
@@ -18,7 +19,9 @@ const FeeStructure = () => {
     { category: "Laboratory/Research Fees", amount: "₹ 7,000" },
     { category: "Examination Fees", amount: "₹ 2,500" },
   ];
-
+  useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
   return (
     <>
     <Navbar/>

@@ -20,7 +20,7 @@ export default function StaffLogin() {
   const navigate = useNavigate();
 
   async function onSubmit(data) {
-
+          
     setLoadingState(true)
     const response = await fetch("/staff/portallogin", {
       method: "POST",
@@ -34,7 +34,7 @@ export default function StaffLogin() {
 
     if (Data.status == "success") {
       navigate("/staffadminpage")
-      // console.log(Data)
+      
     }
     else {
       setAlertMessage(Data.alert)
@@ -142,7 +142,7 @@ export default function StaffLogin() {
                 </div>
 
                 {/* Submit */}
-                <button type="submit" className="btn btn-primary w-100">
+                <button type="submit" className="btn btn-primary w-100 rounded-pill">
                   Login
                 </button>
               </form>

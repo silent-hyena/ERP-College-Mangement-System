@@ -8,6 +8,7 @@ function GetDataBaseTable({ tableName }) {
   const [alertMessage, setAlertMessage] = useState(null);
   const [loadingState, setLoadingState] = useState(false);
   const [currentTableData, setCurrentTableData] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
   useEffect(() => {
     if (!tableName) return;
@@ -17,16 +18,16 @@ function GetDataBaseTable({ tableName }) {
         setLoadingState(true);
 
         const response = await fetch(
-          `/staff/admin/records?table=${tableName}`,
+          `/staff/admin/records?table=${tableName}&&pageNumber=${pageNumber}`,
           {
             method: "GET",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
-          }
+          },
         );
 
         const data = await response.json();
-        console.log(data)
+        
         if (data.alert || data.message) {
           setAlert(true);
           setAlertMessage(data.alert || data.message);
@@ -36,14 +37,18 @@ function GetDataBaseTable({ tableName }) {
         }
       } catch (err) {
         setAlert(true);
-        setAlertMessage("Failed to load table data",err.message);
+        setAlertMessage("Failed to load table data", err.message);
       } finally {
         setLoadingState(false);
       }
     };
 
     getTable();
-  }, [tableName]); 
+  }, [tableName, pageNumber]);
+
+  useEffect(() => {
+    setPageNumber(1);
+  }, [tableName]);
 
   return (
     <>
@@ -54,72 +59,39 @@ function GetDataBaseTable({ tableName }) {
           onClose={() => setAlert(false)}
         />
       )}
+
+      <div className="ms-4 mt-1 p-0" style={{ fontSize: "28px", color:"#515356"}}>
+        {tableName.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+        
+      </div>
+      <hr className="m-0"></hr>
+
+      {/* record page changing section */}
+      {currentTableData && (
+        <div className="d-flex align-items-center justify-content-center gap-3 mt-3 mb-3">
+          <button
+            className="btn btn-outline-secondary px-3"
+            disabled={pageNumber === 1}
+            onClick={() => setPageNumber((p) => Math.max(1, p - 1))}
+          >
+            ← Prev
+          </button>
+
+          <span className="fw-semibold text-muted">
+            Page <span className="text-dark">{pageNumber}</span>
+          </span>
+
+          <button
+            className="btn btn-outline-secondary px-3"
+            onClick={() => setPageNumber((p) => p + 1)}
+          >
+            Next →
+          </button>
+        </div>
+      )}
       {currentTableData && <DisplayTable data={currentTableData} />}
     </>
   );
 }
 
 export default GetDataBaseTable;
-
-
-
-
-
-
-
-
-
-// import { useState } from "react";
-// import AutoDismissAlert from "../../AutoDismissedAlert";
-// import TopProgressBar from "../../components/ProgessBar/ProgressBar";
-// import DisplayTable from "../../components/RenderTable/DisplayTable";
-
-
-
-// function GetDataBaseTable(tableName) {
-
-//     // const [tables, setTables] = useState([]); 
-//     const [alert, setAlert] = useState(false);
-//     const [alertMessage, setAlertMessage] = useState(null);
-//     const [loadingState, setLoadingState] = useState(false);
-//     // const [currentTable,setCurrenTable] = useState(null);
-//     const [currentTableData, setCurrentTableData] = useState(null);
-
-
-//     async function getTable(tableName) {
-//         if (tableName == null) {
-//             return;
-//         }
-//         else {
-//             setLoadingState(true);
-//             const response = await fetch(`http://localhost:3000/staff/admin/records?table=${tableName}`, {
-//                 method: "GET",
-//                 credentials: "include",
-
-//                 headers: { "Content-Type": "application/json" }
-//             })
-
-//             const data = await response.json();
-//             setLoadingState(false);
-//             if (data.alert || data.message) {
-//                 setAlert(true);
-//                 setAlertMessage(data.alert || data.message);
-//             } else {
-//                 setCurrentTableData(data); // save data in state
-//             }
-            
-//             return;
-
-
-
-//         }
-//     }
-//     getTable(tableName)
-//     return <>
-//         <TopProgressBar loading={loadingState} />
-//         {alert && <AutoDismissAlert message={alertMessage} onClose={() => setAlert(false)} />}
-//         <DisplayTable data={currentTableData} />
-//     </>
-
-// }
-// export default GetDataBaseTable

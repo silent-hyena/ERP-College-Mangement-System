@@ -7,7 +7,7 @@ function Departments() {
     const departments = [
         {
             id: "cse",
-            img_src: "computer-lab.jpg",
+            img_src: "computer_lab.jpg",
             department: "Computer Science & Engineering",
             description: `The CSE Department equips students with the skills needed to thrive in the evolving tech industry.
     Through hands-on learning in software development, artificial intelligence, data science, and system design,
@@ -70,7 +70,7 @@ function Departments() {
             <div className="ps-2 pt-5 pe-2 w-100">
 
 
-                <h2 className="heading mt-4 custom-heading">Know Your Department</h2>
+                <h3 className="text-center mb-2 fw-bold custom-heading" style={{color:"#0d47a1"}}>Know Your Department</h3>
                 <hr></hr>
 
 
@@ -79,9 +79,9 @@ function Departments() {
                     const imageOrder = i % 2 === 0 ? "order-md-1" : "order-md-2";
                     const contentOrder = i % 2 === 0 ? "order-md-2" : "order-md-1";
 
-                   return <div key={i} className=" card mb-3 content-box" style={{ maxWidth: "100%", maxHeight: "250px", overflow: "hidden" }}>
+                   return <div key={i} className=" card mb-3 content-box" style={{ maxWidth: "100%", maxHeight: "230px", overflow: "hidden" }}>
                         <div className="row g-0">
-                            <div className={`col-md-4 ${imageOrder}`} style={{ maxHeight: "250px", overflow: "hidden" }}>
+                            <div className={`col-md-4 ${imageOrder}`} style={{ maxHeight: "240px", overflow: "hidden" }}>
                                 <img
                                     src={e.img_src}
                                     className="img-fluid rounded-start"
@@ -92,8 +92,8 @@ function Departments() {
                             <div className={`col-md-8 ${contentOrder}`}>
 
                                 <div className="card-body">
-                                    <h5 className="card-title">{e.department}</h5>
-                                    <p className="card-text">
+                                    <h5 className=" card-heading">{e.department}</h5>
+                                    <p className="card-description">
 
                                         {e.description}
                                     </p>
