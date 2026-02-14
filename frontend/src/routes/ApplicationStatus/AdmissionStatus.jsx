@@ -101,7 +101,7 @@ export default function ApplicationFormCheck() {
                 <FieldRow label="Candidate Name" value={formData.candidate_name} />
                 <FieldRow label="Father's Name" value={formData.fathers_name} />
                 <FieldRow label="Mother's Name" value={formData.mothers_name} />
-                <FieldRow label="Date of Birth" value={new Date().toDateString()} />
+                <FieldRow label="Date of Birth" value={formData.date_of_birth.toDateString()} />
                 <FieldRow label="Gender" value={formData.gender} />
                 <FieldRow label="Category" value={formData.category} />
                 <FieldRow label="PWD" value={formData.pwd ? "Yes" : "No"} />

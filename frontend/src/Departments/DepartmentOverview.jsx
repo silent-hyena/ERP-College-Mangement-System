@@ -109,7 +109,7 @@ function Departments() {
                 
                 <div className="w-100 text-center mt-2 mb-4">
                     <button
-                        className="btn btn btn-outline-primary "
+                        className="btn btn btn-outline-primary rounded-pill "
                         onClick={() => setExpand(!expand)}
                     >
                         {expand ? "Show Less" : "Explore More Departments"}

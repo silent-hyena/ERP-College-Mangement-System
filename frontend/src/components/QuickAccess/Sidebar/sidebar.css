@@ -10,6 +10,7 @@
   position: sticky;
   top: 0;
   box-sizing: border-box; /* ensures width includes border & padding */
+  
 }
 .sidebar *{
   font-size: 12px !important;

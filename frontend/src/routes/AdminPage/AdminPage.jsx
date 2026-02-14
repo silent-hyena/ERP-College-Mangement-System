@@ -47,7 +47,7 @@ function AdminPage() {
   return (
     <>
       <Navbar />
-      <div className="d-flex">
+      <div className="d-flex" style={{ backgroundColor: "rgba(249, 252, 255, 1)" }}>
         {/* Flex container to keep sidebar and content side by side */}
         <div
           className="sidebar2"
@@ -68,48 +68,48 @@ function AdminPage() {
                                 </Link>
                             </ul> */}
               <button
-                className={`mt-3 sidebar-btn  d-flex align-items-center gap-2 ${activeComponent == "Tables" ? "active" : ""}`}
+                className={`mt-3 sidebar-btn rounded-pill  d-flex align-items-center gap-2 ${activeComponent == "Tables" ? "active" : ""}`}
                 onClick={() => setActiveComponent("Tables")}
               >
                 <FaDatabase className="w-20" /> Database & Tables
               </button>
               <button
-                className={`mt-3 sidebar-btn  d-flex align-items-center gap-2 ${activeComponent == "Event" ? "active" : ""}`}
+                className={`mt-3 sidebar-btn rounded-pill  d-flex align-items-center gap-2 ${activeComponent == "Event" ? "active" : ""}`}
                 onClick={() => setActiveComponent("Event")}
               >
-                <FaBullhorn className="w-22" /> Notices & Announcements
+                <FaBullhorn className="w-22" /> Manage Events
               </button>
 
               <button
-                className={`mt-3 sidebar-btn  d-flex align-items-center gap-2 ${activeComponent == "EmailBox" ? "active" : ""}`}
+                className={`mt-3 sidebar-btn rounded-pill  d-flex align-items-center gap-2 ${activeComponent == "EmailBox" ? "active" : ""}`}
                 onClick={() => setActiveComponent("EmailBox")}
               >
                 <FaEnvelopeOpenText className="w-22" /> Communication
               </button>
 
               <button
-                className={`mt-3 sidebar-btn  d-flex align-items-center gap-2 ${activeComponent == "StaffTable" ? "active" : ""}`}
+                className={`mt-3 sidebar-btn rounded-pill d-flex align-items-center gap-2 ${activeComponent == "StaffTable" ? "active" : ""}`}
                 onClick={() => setActiveComponent("StaffTable")}
               >
                 <FaUsers className="w-22" /> User Management
               </button>
 
               <button
-                className={`mt-3 sidebar-btn  d-flex align-items-center gap-2 ${activeComponent == "CourseTable" ? "active" : ""}`}
+                className={`mt-3 sidebar-btn rounded-pill  d-flex align-items-center gap-2 ${activeComponent == "CourseTable" ? "active" : ""}`}
                 onClick={() => setActiveComponent("CourseTable")}
               >
                 <FaBookOpen className="w-22" /> Course & Curriculum
               </button>
 
               <button
-                className={`mt-3 sidebar-btn  d-flex align-items-center gap-2 ${activeComponent == "TransactionTable" ? "active" : ""}`}
+                className={`mt-3 sidebar-btn rounded-pill  d-flex align-items-center gap-2 ${activeComponent == "TransactionTable" ? "active" : ""}`}
                 onClick={() => setActiveComponent("TransactionTable")}
               >
                 <FaFileInvoiceDollar className="w-22" /> Payment Report
               </button>
 
               <button
-                className={`mt-3 sidebar-btn  d-flex align-items-center gap-2 ${activeComponent == "Services" ? "active" : ""}`}
+                className={`mt-3 sidebar-btn rounded-pill  d-flex align-items-center gap-2 ${activeComponent == "Services" ? "active" : ""}`}
                 onClick={() => setActiveComponent("Services")}
               >
                 <FaSlidersH className="w-20" />

@@ -262,6 +262,7 @@ function StudentPortal() {
         </button>
       </div>
       <div className="d-flex">
+
         {/* SIDEBAR */}
 
         <div className="sidebar2">
@@ -269,15 +270,16 @@ function StudentPortal() {
             <nav
               className="vh-100 flex-column ps-2 pt-2 ps-2 pe-2"
               style={{
-                width: "210px",
+                width: "190px",
                 position: "sticky",
                 top: 0,
                 height: "100vh",
                 overflowY: "auto",
+                fontSize: "13px"
               }}
             >
               <Link
-                className="mt-3 sidebar2-btn d-flex align-items-center gap-2"
+                className="mt-3 sidebar-btn rounded-pill d-flex align-items-center gap-2"
                 to="/feeStructure"
               >
                 <FaFileInvoiceDollar />
@@ -285,21 +287,21 @@ function StudentPortal() {
               </Link>
 
               <button
-                className="mt-3 sidebar-btn d-flex align-items-center gap-2"
+                className="mt-3 sidebar-btn rounded-pill d-flex align-items-center gap-2"
                 onClick={() => setActiveSection("feePayment")}
               >
                 <FaMoneyCheckAlt /> Fee Payment
               </button>
 
               <button
-                className="mt-3 sidebar-btn d-flex align-items-center gap-2"
+                className="mt-3 sidebar-btn rounded-pill d-flex align-items-center gap-2"
                 onClick={() => setActiveSection("courseRegistration")}
               >
                 <FaBookOpen /> Course Registration
               </button>
 
               <button
-                className="mt-3 sidebar-btn d-flex align-items-center gap-2"
+                className="mt-3 sidebar-btn rounded-pill d-flex align-items-center gap-2"
                 onClick={() => {
                   (handleGradeBtn(), setActiveSection("gradeReport"));
                 }}
@@ -308,7 +310,7 @@ function StudentPortal() {
               </button>
 
               <button
-                className="mt-3 sidebar-btn d-flex align-items-center gap-2"
+                className="mt-3 sidebar-btn rounded-pill d-flex align-items-center gap-2"
                 onClick={() => {
                   handleGetFreeReceipt();
                 }}
@@ -317,13 +319,13 @@ function StudentPortal() {
               </button>
 
               <button
-                className="mt-3 sidebar-btn d-flex align-items-center gap-2"
+                className="mt-3 sidebar-btn rounded-pill d-flex align-items-center gap-2"
                 onClick={() => setActiveSection("feedback")}
               >
                 <FaCommentAlt /> Feedback
               </button>
               <button
-                className="mt-3 sidebar-btn d-flex align-items-center gap-2"
+                className="mt-3 sidebar-btn rounded-pill d-flex align-items-center gap-2"
                 onClick={() => setActiveSection("ManageProfile")}
               >
                 <FaUser /> Manage Profile

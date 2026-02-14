@@ -28,7 +28,7 @@ function Home() {
 
   return (
     <div style={{ "backgroundColor": "#f0f4f9" }}>
-
+      
       <div className="container-fluid top-bar">
         <div className="row">
           {/* Logo Section */}
@@ -57,6 +57,8 @@ function Home() {
       <Banner />
       {/* <div className="container-fluid " style={{ minHeight: "2000px" }}></div> */}
       <QuickAccess />
+      
+      {/* Dynamic Events Section: */}
       {events.length > 0 &&
         <div className="bg-white pt-4 pb-4">
           <h3 className="text-center mt-4 mb-4 fw-bold custom-heading" style={{ color: "#0d47a1" }}>Upcoming Events</h3>
@@ -98,7 +100,7 @@ function Home() {
             ))}
           </div>
           <div className="w-100 text-center mt-3 mb-3">
-            <Link to="/institute/events" className="btn btn-outline-primary">
+            <Link to="/institute/events" className="btn btn-outline-primary rounded-pill">
               Explore More Events →
             </Link>
           </div>
