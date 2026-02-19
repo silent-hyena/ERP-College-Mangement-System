@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import logout from "../../logoutUtil.js";
+import AutoDismissAlert from "../../AutoDismissedAlert.jsx";
 import {
   FaHome,
   FaSignOutAlt,
@@ -48,6 +49,7 @@ function StudentPortal() {
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState([]);
   const [paymentData, setPaymentData] = useState([]);
+  const [alert, setAlert] = useState(null)
 
   const navigate = useNavigate();
 
@@ -109,11 +111,19 @@ function StudentPortal() {
     </div>
   );
 
-  const handleLogout = () => {
+  async function handleLogout() {
+    const res = await logout();
+    if(res === true){
+      navigate("/")
+    }
+    else{
+      setAlert(res)
+    }
+
     // delete JWT cookie
-    document.cookie = "jwt=; Max-Age=0; path=/";
-    // redirect to home / login
-    navigate("/");
+    // document.cookie = "jwt=; Max-Age=0; path=/";
+    // // redirect to home / login
+    // navigate("/");
   };
 
   async function handleGradeBtn() {
@@ -234,6 +244,7 @@ function StudentPortal() {
 
   return (
     <>
+      {alert && <AutoDismissAlert message={alert} type="failure" onClose={()=>setAlert(null)}/>}
       <TopProgressBar loading={loading} />
       <Navbar />
       {/* top bar for profile and logout option */}

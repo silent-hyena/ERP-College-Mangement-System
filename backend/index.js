@@ -12,6 +12,7 @@ import studentRoute from "./router/student.js";
 import admissionRoute from "./router/admission.js";
 import adminRoute from "./router/admin.js"
 import instructor from "./router/instructor.js"
+import { logout } from "./controller/logoutUser.js";
 
 
 dotenv.config();
@@ -37,6 +38,7 @@ app.use("/student", studentRoute);
 app.use("/admission", admissionRoute);
 app.use("/staff/admin",adminRoute)
 app.use("/staff/instructor",instructor);
+app.post("/logout",logout)
 
 // Serve frontend
 const __dirname = path.resolve();

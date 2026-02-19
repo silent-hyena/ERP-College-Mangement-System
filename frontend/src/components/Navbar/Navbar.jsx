@@ -27,7 +27,7 @@ function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav  ms-auto">
 
-                            <li className="nav-item dropdown">
+                            <li className="nav-item dropdown me-2">
                                 {/* <Link className="nav-link" to="/Admissions">Admissions</Link> */}
                                 <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Admissions</a>
 
@@ -39,7 +39,7 @@ function Navbar() {
 
                                 </ul>
                             </li>
-                            <li className="nav-item dropdown">
+                            <li className="nav-item dropdown me-2">
                                 <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Students</a>
                                 {/* <Link className="nav-link" to="/Students">Students</Link> */}
                                 <ul className="dropdown-menu dropdown-menu-end">
@@ -48,7 +48,7 @@ function Navbar() {
 
                                 </ul>
                             </li>
-                            <li className="nav-item dropdown">
+                            <li className="nav-item dropdown me-2">
                                 <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Programmes</a>
                                 {/* <Link className="nav-link" to="/Programmes">Programmes</Link> */}
 
@@ -58,7 +58,7 @@ function Navbar() {
 
                                 </ul>
                             </li>
-                            <li className="nav-item dropdown">
+                            <li className="nav-item dropdown me-2">
                                 {/* <Link className="nav-link" to="/Institute">Institute</Link> */}
                                 <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Institue</a>
                                 <ul className="dropdown-menu dropdown-menu-end">
@@ -78,7 +78,7 @@ function Navbar() {
 
                                 </ul>
                             </li>
-                            <li className="nav-item dropdown">
+                            <li className="nav-item dropdown me-2">
                                 {/* <Link className="nav-link" to="/Faculty">Faculty</Link> */}
                                 <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Faculty</a>
                                 <ul className="dropdown-menu dropdown-menu-end">
